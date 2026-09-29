@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue AccueilController!{% endblock %}
+
+{% block body %}
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="{{ asset('assets/Logo BeDoggy unique.png') }}" alt="logo">
+            <p> BeDoggy </p>
+        </div>
+        <div class="nav-center">
+            <a href="{{ path('app_accueil') }}"> Accueil </a>
+
+            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
+            <a href=""> Prestations </a>
+            <a href=""> Créer une demande </a>
+            <a href=""> Mes demandes </a>
+            <a href=""> Connexion </a>
+            -->
+        </div>
+        <div class="nav-right">
+            <button> S'inscrire </button>
+        </div>
+
+    </nav>
+
+<div class="example-wrapper">
+    <h1>Bienvenue {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code>C:/Users/delahoussem/Documents/BeDoggy/BeDoggy/src/Controller/AccueilController.php</code></li>
+        <li>Your template at <code>C:/Users/delahoussem/Documents/BeDoggy/BeDoggy/templates/accueil/index.html.twig</code></li>
+    </ul>
+</div>
+{% endblock %}

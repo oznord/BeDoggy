@@ -1,0 +1,35 @@
+/* Barre de navigation */
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.nav-left {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+.nav-left img {
+    grid-column: 1;
+    height: 100px;
+    width: 100px;
+}
+
+.nav-left p {
+    grid-column: 2;
+}
+
+.nav-center {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items:center;
+}
+
+.nav-right {
+    grid-column: 3;
+    align-self: center;
+}
