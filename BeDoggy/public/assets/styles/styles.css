@@ -60,7 +60,7 @@
     grid-column: 3;
 }
 
-/* Page présentation Accueil */
+/* ACCUEIL - Haut de page */
 .presentationAccueil {
     background-image: url('/assets/fond.png');
     background-size: cover;
@@ -170,4 +170,157 @@
 
 .boutonsAccueil .bouton2 p {
     grid-column: 3;
+}
+
+/* ACCUEIL - Mise en confiance */
+.miseConfiance {
+    margin-top: 0px;
+    background: #F9F9F9;
+    font-family: "arial";
+    font-size: 13px;
+    text-align: center;
+    height: 300px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 2fr repeat(3, 1fr) 2fr;
+
+    align-items: center;
+    justify-items: center;
+
+    gap: 10px;
+}
+
+.cercle1 {
+    grid-column: 1;
+    grid-row: 2;
+    width: 70px;
+    height: 70px;
+    background-color: #DAF3DD;
+    border-radius: 50%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    justify-items: center;
+    
+}
+.cercle2 {
+    grid-column: 2;
+    grid-row: 2;
+    width: 70px;
+    height: 70px;
+    background-color: #DAF3DD;
+    border-radius: 50%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    justify-items: center;
+}
+.cercle3 {
+    grid-column: 3;
+    grid-row: 2;
+    width: 70px;
+    height: 70px;
+    background-color: #DAF3DD;
+    border-radius: 50%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    justify-items: center;
+}
+.cercle4 {
+    grid-column: 4;
+    grid-row: 2;
+    width: 70px;
+    height: 70px;
+    background-color: #DAF3DD;
+    border-radius: 50%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.cercle1 img {
+    width: 50px;
+}
+.cercle2 img {
+    width: 60px;
+}
+.cercle3 img {
+    width: 60px;
+    padding-bottom: 5px;
+}
+.cercle4 img {
+    width: 70px;
+}
+
+.miseConfiance .titre1 {
+    grid-column: 1;
+    grid-row: 3;
+    color: #096A00;
+}
+.miseConfiance .titre2 {
+    grid-column: 2;
+    grid-row: 3;
+    color: #096A00;
+}
+.miseConfiance .titre3 {
+    grid-column: 3;
+    grid-row: 3;
+    color: #096A00;
+}
+.miseConfiance .titre4 {
+    grid-column: 4;
+    grid-row: 3;
+    color: #096A00;
+}
+
+.miseConfiance .p1 {
+    grid-column: 1;
+    grid-row: 4;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #559B4C;
+}
+.miseConfiance .p2 {
+    grid-column: 2;
+    grid-row: 4;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #559B4C;
+}
+.miseConfiance .p3 {
+    grid-column: 3;
+    grid-row: 4;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #559B4C;
+}
+.miseConfiance .p4 {
+    grid-column: 4;
+    grid-row: 4;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #559B4C;
+}
+
+/* ACCUEIL - Infos Prestations */
+.introPresentationPrestas {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
 }
