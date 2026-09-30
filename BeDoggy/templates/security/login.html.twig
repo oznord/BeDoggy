@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - BeDoggy{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="login-page">
+    <section class="login-panel">
+        <div class="login-content">
+            <img
+                src="{{ asset('images/Logo BeDoggy.png') }}"
+                alt="Logo BeDoggy"
+                class="login-logo"
+            >
+
+            <h1>Content de vous revoir</h1>
+
+            <p class="login-subtitle">
+                Connectez-vous pour accéder à votre espace d'éducation canine.
+            </p>
+
+            {% if error %}
+                <div class="login-error">
+                    Identifiants incorrects. Vérifiez votre adresse e-mail et votre mot de passe.
+                </div>
+            {% endif %}
+
+            <form method="post" action="{{ path('app_login') }}" class="login-form">
+                <div class="login-field">
+                    <label for="username">Email</label>
+                    <input
+                        type="email"
+                        id="username"
+                        name="_username"
+                        value="{{ last_username }}"
+                        placeholder="nom@exemple.fr"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="login-field">
+                    <label for="password">Mot de passe</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="_password"
+                        placeholder="••••••••••••"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <div class="login-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="_remember_me">
+                        <span>Se souvenir de moi</span>
+                    </label>
+
+                    <a href="#" class="forgot-password">
+                        Mot de passe oublié ?
+                    </a>
+                </div>
+
+                <input
+                    type="hidden"
+                    name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button type="submit" class="login-button">
+                    Se connecter <span>→</span>
+                </button>
+            </form>
+
+            <p class="register-link">
+                Vous n'avez pas de compte ?
+                <a href="{{ path('app_inscription') }}">Créer un compte</a>
+            </p>
+        </div>
+    </section>
+
+    <section class="login-image">
+        <div class="login-image-card">
+            <h2>Une éducation bienveillante pour une relation harmonieuse.</h2>
+            <p>
+                Rejoignez BeDoggy pour suivre l'évolution de votre compagnon,
+                gérer vos rendez-vous et consulter vos bilans personnalisés.
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,12 +1,116 @@
+{# filepath: c:\Users\gratienk\OneDrive - Groupement de l'enseignement catholique du pays de Vernon\Bureau\D\Gau\WorkSpace\BeDoggy\BeDoggy\templates\inscription\index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription à BeDoggy{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+{% endblock %}
+
 {% block body %}
+<div class="register-page">
+    <section class="register-panel">
+        <div class="register-content">
+            <img
+                src="{{ asset('images/Logo BeDoggy.png') }}"
+                alt="Logo BeDoggy"
+                class="logo"
+            >
 
+            <h1>Rejoignez BeDoggy</h1>
 
-    <h1>Hello {{ controller_name }}!    </h1>
+            <p class="subtitle">
+                Créez votre compte pour commencer l'aventure avec votre compagnon.
+            </p>
 
-    
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-error">{{ message }}</div>
+            {% endfor %}
+
+            <form method="post" class="register-form">
+                <input type="hidden" name="_token" value="{{ csrf_token('inscription') }}">
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="prenom">Prénom</label>
+                        <input
+                            type="text"
+                            id="prenom"
+                            name="prenom"
+                            placeholder="Jean"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="nom">Nom</label>
+                        <input
+                            type="text"
+                            id="nom"
+                            name="nom"
+                            placeholder="Dupont"
+                            required
+                        >
+                    </div>
+
+                    <div class="field field-full">
+                        <label for="tel">Numéro de téléphone</label>
+                        <input
+                            type="tel"
+                            id="tel"
+                            name="tel"
+                            placeholder="06 00 00 00 00"
+                            required
+                        >
+                    </div>
+
+                    <div class="field field-full">
+                        <label for="mail">Email</label>
+                        <input
+                            type="email"
+                            id="mail"
+                            name="mail"
+                            placeholder="nom@exemple.fr"
+                            required
+                        >
+                    </div>
+
+                    <div class="field field-full">
+                        <label for="mdp">Mot de passe</label>
+                        <input
+                            type="password"
+                            id="mdp"
+                            name="mdp"
+                            minlength="12"
+                            placeholder="••••••••••••"
+                            required
+                        >
+                        <small>Le mot de passe doit contenir au moins 12 caractères.</small>
+                    </div>
+                </div>
+
+                <button type="submit">
+                    Créer mon compte <span>→</span>
+                </button>
+            </form>
+
+            <p class="login-link">
+                Vous avez déjà un compte ?
+                <a href="{{ path('app_login') }}">Se connecter</a>
+            </p>
+        </div>
+    </section>
+
+    <section class="register-image">
+        <div class="image-overlay">
+            <h2>Construisez une belle complicité avec votre chien.</h2>
+            <p>
+                Inscrivez-vous pour accéder à nos prestations, réserver vos séances
+                et retrouver tous les conseils de votre éducateur.
+            </p>
+        </div>
+    </section>
 </div>
 {% endblock %}
