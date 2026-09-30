@@ -38,6 +38,28 @@
     align-self: center;
 }
 
+.nav-right button {
+    background: linear-gradient(to right, #056500, #08A100);
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 9fr 1fr;
+    align-items: center;
+}
+
+.nav-right button img {
+    grid-column: 2;
+    width: 20px;
+}
+
+.nav-right button p {
+    grid-column: 3;
+}
+
 /* Page présentation Accueil */
 .presentationAccueil {
     background-image: url('/assets/fond.png');
@@ -46,8 +68,8 @@
     height: 500px;
 
     display: grid;
-    grid-template-columns: 4fr 3fr;
-    grid-template-rows: 6fr repeat(4, 2fr) 6fr;
+    grid-template-columns: 6fr 5fr;
+    grid-template-rows: 6fr 8fr 6fr;
 }
 
 .titreFondAccueil {
@@ -55,17 +77,18 @@
     grid-row: 2;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 4fr 1fr;
+    grid-template-columns: 1fr auto 4fr;
+    grid-template-rows: repeat(3, auto); 
 
-    gap: 0px;
-    border: 2px solid red;
+    gap: 5px;
 }
 
 .titreFondAccueil img {
     grid-column: 2;
-    width: 150px;
-    height: auto;
-    border: 2px solid red;
+    align-self:center;
+    justify-self: right;
+
+    width: 30px;
 }
 
 .titreFondAccueil h3 {
@@ -74,10 +97,77 @@
     align-self: center;
 }
 
-.presentationAccueil h1 {
-    grid-column: 1;
-    grid-row: 3;
+.motVert {
+    color: green;
+}
+
+.titreFondAccueil h1 {
+    grid-column: 2/4;
+    grid-row: 2;
     font-family: "Arial";
     justify-self: center;
     text-align: left;
+}
+
+.titreFondAccueil p {
+    grid-column: 2 / 4;
+    grid-row: 3;
+    font-family: "Arial";
+    font-weight: bold;
+}
+
+.boutonsAccueil {
+    grid-column: 2 / 4;
+
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 20px;
+}
+
+.boutonsAccueil .bouton1 {
+    background: linear-gradient(to right, #056500, #08A100);
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+
+    font-weight: bold;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 9fr 1fr;
+    align-items:center;
+} 
+
+.boutonsAccueil .bouton1 img {
+    grid-column: 2;
+    width: 20px;
+}
+
+.boutonsAccueil .bouton1 p {
+    grid-column: 3;
+}
+
+.boutonsAccueil .bouton2 {
+    background: transparent;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+
+    font-weight: bold;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 9fr 1fr;
+    align-items:center;
+
+    gap: 2px;
+}
+
+.boutonsAccueil .bouton2 img {
+    grid-column: 2;
+    width: 20px;
+}
+
+.boutonsAccueil .bouton2 p {
+    grid-column: 3;
 }

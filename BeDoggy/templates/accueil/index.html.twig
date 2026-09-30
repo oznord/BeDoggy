@@ -19,20 +19,35 @@
             -->
         </div>
         <div class="nav-right">
-            <button> S'inscrire </button>
+            <button>
+                <img src="{{ asset('assets/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                S'inscrire
+            </button>
         </div>
     </nav>
     <div class="presentationAccueil">
         <div class="titreFondAccueil">
             <img src="{{ asset('assets/petite feuille.png') }}" alt="feuille">
             <h3> Un soutien au quotidien pour nos compagnons </h3>
-        </div>
-
-        <h1> Des services sur mesure pour le bien-être de votre chien </h1>    
-        
-        <p> BeDoggy accompagne les éleveurs canins et les propriétaires dans la gestion
+            <h1> Des services sur mesure pour le <span class="motVert"> bien-être </span> de votre chien </h1> 
+            <p> BeDoggy accompagne les éleveurs canins et les propriétaires dans la gestion
             et le suivi de leurs demandes. Profitez de prestations professionnelles, 
             simples et rapides, pour le bonheur de vos chiens. </p>
+            <div class="boutonsAccueil">
+                <button class="bouton1">
+                    <img src="{{ asset('assets/patte blanche.png')}}" alt="patteBlanche">
+                    Découvrir nos prestations → 
+                </button>
+                <button class="bouton2">
+                    <img src="{{ asset('assets/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                    Créer un compte
+                </button>
+            </div>
+        </div>
+
+          
+        
+        
     </div>
 
 {% endblock %}
