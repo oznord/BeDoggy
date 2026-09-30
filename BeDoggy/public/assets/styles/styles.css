@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     grid-template-rows: 1fr;
+    gap: 50px;
 }
 
 .nav-left {
@@ -20,6 +21,9 @@
 
 .nav-left p {
     grid-column: 2;
+    color: #054000;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .nav-center {
@@ -32,4 +36,48 @@
 .nav-right {
     grid-column: 3;
     align-self: center;
+}
+
+/* Page présentation Accueil */
+.presentationAccueil {
+    background-image: url('/assets/fond.png');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: 6fr repeat(4, 2fr) 6fr;
+}
+
+.titreFondAccueil {
+    grid-column: 1;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr 1fr;
+
+    gap: 0px;
+    border: 2px solid red;
+}
+
+.titreFondAccueil img {
+    grid-column: 2;
+    width: 150px;
+    height: auto;
+    border: 2px solid red;
+}
+
+.titreFondAccueil h3 {
+    grid-column: 3;
+    font-family: 'Arial';
+    align-self: center;
+}
+
+.presentationAccueil h1 {
+    grid-column: 1;
+    grid-row: 3;
+    font-family: "Arial";
+    justify-self: center;
+    text-align: left;
 }
