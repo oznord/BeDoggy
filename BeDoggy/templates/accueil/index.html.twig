@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue AccueilController!{% endblock %}
+
+{% block body %}
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="{{ asset('assets/Logo BeDoggy unique.png') }}" alt="logo">
+            <p> BeDoggy </p>
+        </div>
+        <div class="nav-center">
+            <a href="{{ path('app_accueil') }}"> Accueil </a>
+
+            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
+            <a href=""> Prestations </a>
+            <a href=""> Créer une demande </a>
+            <a href=""> Mes demandes </a>
+            <a href=""> Connexion </a>
+            -->
+        </div>
+        <div class="nav-right">
+            <button>
+                <img src="{{ asset('assets/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                S'inscrire
+            </button>
+        </div>
+    </nav>
+    <div class="presentationAccueil">
+        <!-- Haut de page -->
+        <div class="titreFondAccueil">
+            <img src="{{ asset('assets/petite feuille.png') }}" alt="feuille">
+            <h3> Un soutien au quotidien pour nos compagnons </h3>
+            <h1> Des services sur mesure pour le <span class="motVert"> bien-être </span> de votre chien </h1> 
+            <p> BeDoggy accompagne les éleveurs canins et les propriétaires dans la gestion
+            et le suivi de leurs demandes. Profitez de prestations professionnelles, 
+            simples et rapides, pour le bonheur de vos chiens. </p>
+            <div class="boutonsAccueil">
+                <button class="bouton1">
+                    <img src="{{ asset('assets/patte blanche.png')}}" alt="patteBlanche">
+                    Découvrir nos prestations → 
+                </button>
+                <button class="bouton2">
+                    <img src="{{ asset('assets/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                    Créer un compte
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Mise en confiance -->
+    <div class="miseConfiance">
+        <div class="cercle1">
+            <img src="{{ asset('assets/patte verte.png')}}" alt="patteVerte">
+        </div>
+        <h2 class="titre1"> Des prestations variées </h2>
+        <p class="p1"> Soins, éducation, garde... des services adaptés à chaque besoin. </p>
+        <div class="cercle2">
+            <img src="{{ asset('assets/bouclier vert.png')}}" alt="bouclierVert">
+        </div>
+        <h2 class="titre2"> Educateur de confiance </h2>
+        <p class="p2"> Un éducateur passionné, reconnu pour son expertise et son sérieux. </p>
+        <div class="cercle3">
+            <img src="{{ asset('assets/calendrier vert.png')}}" alt="calendrierVert">
+        </div>
+        <h2 class="titre3"> Une gestion simplifée </h2>
+        <p class="p3"> Créez vos demandes en ligne et suivez-les en temps réel. </p>
+        <div class="cercle4">
+            <img src="{{ asset('assets/coeur vert.png')}}" alt="coeurVert">
+        </div>
+        <h2 class="titre4"> Le bien-être avant tout </h2>
+        <p class="p4"> Le respect et la santé de votre chien sont notre priorité. </p>
+    </div>
+    <div class="introPresentationPrestas">
+        <div class="titrePrestasAccueil">
+            <img src="{{ asset('assets/petite feuille.png')}}" alt="petiteFeuille">
+            <h3> NOS PRESTATIONS </h3>
+            <h1> Des services adaptés à vos besoins </h1>
+            <p> Découvrez nos différentes prestations et choisissez celle qui 
+                correspond le mieux à votre demande. </p>
+        </div>
+        <div class="boutonVoirPrestas">
+            <button> Voir toutes les prestations → </button>
+        </div>
+        
+    </div>
+
+          
+        
+        
+
+
+{% endblock %}
