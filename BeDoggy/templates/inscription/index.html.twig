@@ -1,11 +1,9 @@
-{# filepath: c:\Users\gratienk\OneDrive - Groupement de l'enseignement catholique du pays de Vernon\Bureau\D\Gau\WorkSpace\BeDoggy\BeDoggy\templates\inscription\index.html.twig #}
 
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription à BeDoggy{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 {% endblock %}
 
@@ -30,6 +28,7 @@
             {% endfor %}
 
             <form method="post" class="register-form">
+                <!-- CSRF token pour la sécurité, ça empêche les attaques de type CSRF où un site malveillant essaie de soumettre des formulaires au nom d'un utilisateur -->
                 <input type="hidden" name="_token" value="{{ csrf_token('inscription') }}">
 
                 <div class="form-grid">

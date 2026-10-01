@@ -1,196 +1,177 @@
-* {
-            box-sizing: border-box;
-        }
 
-        body {
-            margin: 0;
-            background: #202124;
-            font-family: Arial, sans-serif;
-        }
 
-        .register-page {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 45% 55%;
-            background: #fff;
-        }
+    * {
+        box-sizing: border-box;
+    }
 
-        .register-panel {
-            display: grid;
-            place-items: center;
-            padding: 60px 10%;
-            background: #fff;
-        }
+    body {
+        margin: 0;
+        background: #202124;
+        font-family: Arial, sans-serif;
+    }
 
-        .register-content {
-            width: min(100%, 430px);
-        }
+    .register-page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        background: #fff;
+    }
 
-        .logo {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            margin-bottom: 22px;
-        }
+    .register-panel {
+        display: grid;
+        place-items: center;
+        padding: 60px 10%;
+        background: #fff;
+    }
 
-        h1 {
-            margin: 0;
-            color: #063b23;
-            font-size: 26px;
-        }
+    .register-content {
+        width: min(100%, 430px);
+    }
 
-        .subtitle {
-            max-width: 300px;
-            margin: 8px 0 30px;
-            color: #78a58e;
-            font-size: 14px;
-            line-height: 1.4;
-        }
+    .logo {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        margin-bottom: 22px;
+    }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px 12px;
-        }
+    h1 {
+        margin: 0;
+        color: #063b23;
+        font-size: 26px;
+    }
 
-        .field {
-            display: grid;
-            gap: 7px;
-        }
+    .subtitle {
+        max-width: 300px;
+        margin: 8px 0 30px;
+        color: #78a58e;
+        font-size: 14px;
+        line-height: 1.4;
+    }
 
-        .field-full {
-            grid-column: 1 / -1;
-        }
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 12px;
+    }
 
-        label {
-            color: #397258;
-            font-size: 12px;
-            font-weight: bold;
-        }
+    .field {
+        display: grid;
+        gap: 7px;
+    }
 
-        input {
-            width: 100%;
-            border: 1px solid #d9eee2;
-            border-radius: 9px;
-            padding: 11px 13px;
-            color: #174d35;
-            background: #f6fcf8;
-            outline: none;
-        }
+    .field-full {
+        grid-column: 1 / -1;
+    }
 
-        input:focus {
-            border-color: #176139;
-            box-shadow: 0 0 0 3px rgba(23, 97, 57, .12);
-        }
+    label {
+        color: #397258;
+        font-size: 12px;
+        font-weight: bold;
+    }
 
-        small {
-            color: #8bb29d;
-            font-size: 11px;
-        }
+    input {
+        width: 100%;
+        border: 1px solid #d9eee2;
+        border-radius: 9px;
+        padding: 11px 13px;
+        color: #174d35;
+        background: #f6fcf8;
+        outline: none;
+    }
 
-        button {
-            width: 100%;
-            margin-top: 18px;
-            border: 0;
-            border-radius: 8px;
-            padding: 12px;
-            color: #fff;
-            background: #003d22;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    input:focus {
+        border-color: #176139;
+        box-shadow: 0 0 0 3px rgba(23, 97, 57, .12);
+    }
 
-        button:hover {
-            background: #075b35;
-        }
+    small {
+        color: #8bb29d;
+        font-size: 11px;
+    }
 
-        button span {
-            margin-left: 8px;
-        }
+    button {
+        width: 100%;
+        margin-top: 18px;
+        border: 0;
+        border-radius: 8px;
+        padding: 12px;
+        color: #fff;
+        background: #003d22;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-        .login-link {
-            margin-top: 30px;
-            color: #82ac96;
-            text-align: center;
-            font-size: 13px;
-        }
+    button:hover {
+        background: #075b35;
+    }
 
-        .login-link a {
-            color: #174d35;
-            font-weight: bold;
-            text-decoration: none;
-        }
+    button span {
+        margin-left: 8px;
+    }
 
-        .register-image {
-            position: relative;
-            min-height: 100vh;
-            display: grid;
-            align-items: end;
-            padding: 10%;
-            background:
-                linear-gradient(to top, rgba(12, 48, 18, .55), transparent 55%),
-                url('/images/chien-inscription.jpg') center / cover no-repeat;
-        }
+    .login-link {
+        margin-top: 30px;
+        color: #82ac96;
+        text-align: center;
+        font-size: 13px;
+    }
 
-        .image-overlay {
-            max-width: 310px;
-            padding: 22px;
-            border: 1px solid rgba(255,255,255,.25);
-            border-radius: 12px;
-            color: #fff;
-            background: rgba(44, 83, 27, .65);
-            backdrop-filter: blur(5px);
-        }
+    .login-link a {
+        color: #174d35;
+        font-weight: bold;
+        text-decoration: none;
+    }
 
-        .image-overlay h2 {
-            margin: 0 0 14px;
-            font-size: 20px;
-        }
-
-        .image-overlay p {
-            margin: 0;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .alert {
-            margin-bottom: 18px;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-        }
-
-        .alert-error {
-            color: #8a1c1c;
-            background: #ffe8e8;
-        }
-
-        @media (max-width: 800px) {
-            .register-page {
-                grid-template-columns: 1fr;
-            }
-
-            .register-image {
-                display: none;
-            }
-
-            .register-panel {
-                min-height: 100vh;
-                padding: 40px 24px;
-            }
-        }
+    .register-image {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        align-items: end;
+        padding: 10%;
+        background:
+            linear-gradient(to top, rgba(12, 48, 18, .55), transparent 55%),
+            url('/images/chien-inscription.jpg') center / cover no-repeat;
+    }
 
 
 
-* {
-    box-sizing: border-box;
-}
 
-body {
-    margin: 0;
-    background: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    .image-overlay {
+        max-width: 350px;
+        padding: 22px;
+        border: 1px solid rgba(255,255,255,.25);
+        border-radius: 12px;
+        color: #ffffff;
+        background: rgba(99, 124, 88, 0.336);
+        backdrop-filter: blur(5px);
+    }
+
+    .image-overlay h2 {
+        margin: 0 0 14px;
+        font-size: 20px;
+    }
+
+    .image-overlay p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .alert {
+        margin-bottom: 18px;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 13px;
+    }
+
+    .alert-error {
+        color: #8a1c1c;
+        background: #ffe8e8;
+    }
+
+
+
 
 .login-page {
     min-height: 100vh;
@@ -333,23 +314,25 @@ body {
 }
 
 .login-image {
-    min-height: 100vh;
     position: relative;
+    overflow: hidden;
+    min-height: 100vh;
     display: grid;
     align-items: end;
-    padding: 6.5% 8%;
+    padding: 10%;
     background:
-        linear-gradient(to top, rgba(14, 57, 18, .62), transparent 58%),
+        linear-gradient(to top, rgba(12, 48, 18, .55), transparent 55%),
         url('/images/chien-inscription.jpg') center / cover no-repeat;
+    transform: scale(1);
 }
 
 .login-image-card {
-    max-width: 310px;
-    border: 1px solid rgba(255, 255, 255, .28);
+    max-width: 350px;
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,.25);
     border-radius: 12px;
-    padding: 21px;
     color: #ffffff;
-    background: rgba(55, 91, 31, .68);
+    background: rgba(99, 124, 88, 0.336);
     backdrop-filter: blur(5px);
 }
 
@@ -365,17 +348,53 @@ body {
     line-height: 1.5;
 }
 
-@media (max-width: 800px) {
-    .login-page {
-        grid-template-columns: 1fr;
+
+@media (max-width: 900px) {
+    .register-page {
+        display: flex;
+        flex-direction: column-reverse; 
+        min-height: 100vh;
     }
 
-    .login-image {
-        display: none;
+
+    .register-panel {
+        padding: 2rem 1.5rem;
+        flex: 1; 
+    }
+
+
+    .register-image {
+        min-height: 250px;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr; 
+        gap: 15px; 
+        margin-bottom: 20px;
+    }
+
+
+    .login-page {
+        display: flex;
+        flex-direction: column-reverse; 
+        min-height: 100vh;
     }
 
     .login-panel {
-        min-height: 100vh;
-        padding: 40px 24px;
+        padding: 2rem 1.5rem;
+        flex: 1; 
     }
+
+
+    .login-image {
+        min-height: 250px;
+        background-size: cover;
+        background-position: center;
+    }
+
+
 }
