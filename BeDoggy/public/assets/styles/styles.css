@@ -390,3 +390,80 @@
     font-weight: bold;
     color: white;
 }
+
+
+
+
+.btn-inscription {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 20px;   
+    
+  
+    background-color: #008800;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 12px 40px;     
+    
+   
+    text-decoration: none;     
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    
+
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+.btn-inscription:hover {
+    background-color: #006600;
+}
+
+
+.btn-inscription img {
+    width: 24px;
+    height: auto;
+}
+
+
+
+.bouton2 {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    
+
+    border-radius: 50px;
+    padding: 12px 40px;
+    
+
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    
+
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.bouton2:hover {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+
+.bouton2 img {
+    width: 24px;
+    height: auto;
+}

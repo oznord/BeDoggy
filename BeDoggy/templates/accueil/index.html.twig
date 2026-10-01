@@ -18,12 +18,12 @@
             <a href=""> Connexion </a>
             -->
         </div>
-        <div class="nav-right">
-            <button>
-                <img src="{{ asset('assets/icone_blanc_transparent.png')}}" alt="iconeBlanc">
-                S'inscrire
-            </button>
-        </div>
+            <div class="nav-right">
+                <a href="{{ path('app_inscription') }}" class="btn-inscription"> 
+                    <img src="{{ asset('assets/icone_blanc_transparent.png') }}" alt="iconeBlanc">
+                    S'inscrire
+                </a>
+            </div>
     </nav>
     <div class="presentationAccueil">
         <!-- Haut de page -->
@@ -39,10 +39,10 @@
                     <img src="{{ asset('assets/patte blanche.png')}}" alt="patteBlanche">
                     Découvrir nos prestations → 
                 </button>
-                <button class="bouton2">
+                <a href="{{ path('app_inscription') }}" class="bouton2">
                     <img src="{{ asset('assets/icone_blanc_transparent.png')}}" alt="iconeBlanc">
                     Créer un compte
-                </button>
+                </a>
             </div>
         </div>
     </div>
