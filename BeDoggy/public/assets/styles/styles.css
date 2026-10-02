@@ -319,7 +319,7 @@
 
 /* ACCUEIL - Infos Prestations */
 .introPresentationPrestas {
-    height: 150px;
+    height: 400px;
 
     display: grid;
     grid-template-columns: 2fr 3fr;
@@ -389,4 +389,46 @@
 
     font-weight: bold;
     color: white;
+}
+
+/* ACCUEIL - Affichage des 3 premières prestas */
+.accueilPrestas {
+    margin-top:10px;
+    height : auto;
+    text-align: center;
+    font-family: 'arial';
+    font-size: 18px;
+    color: #054100;
+    font-weight: bold;
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+
+    align-items: center;
+    justify-items: center;
+
+    margin-bottom: 50px;
+    gap: 30px;
+}
+
+.chaquePrestaAccueil {
+    background-color: rgb(238, 255, 238);
+    border-radius: 40px;
+    border: 1px solid #F0F0F0;
+
+    display : grid;
+    grid-template-rows: repeat(2, auto);
+}
+
+.accueilPrestas .chaquePrestaAccueil img {
+    grid-row: 1;
+
+    border-radius: 40px;
+    width: 300px;
+    height: 160px;
+}
+
+.accueilPrestas .chaquePrestaAccueil  h3 {
+    grid-row: 2;
 }
