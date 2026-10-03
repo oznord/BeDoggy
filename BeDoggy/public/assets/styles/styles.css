@@ -541,6 +541,14 @@
     height: 180px;
 }
 
+.affichagePrestation .eachPresta h1 {
+    font-size: 30px;
+}
+
+.affichagePrestation .eachPresta p {
+    font-size: 20px;
+}
+
 .affichagePrestation .eachPresta h3 {
     font-size: 22px;
 }
