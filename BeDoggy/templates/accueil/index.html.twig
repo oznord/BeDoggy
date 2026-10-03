@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue AccueilController!{% endblock %}
+{% block title %} Accueil {% endblock %}
 
 {% block body %}
     <nav class="navbar">
@@ -10,9 +10,9 @@
         </div>
         <div class="nav-center">
             <a href="{{ path('app_accueil') }}"> Accueil </a>
+            <a href="{{ path('app_prestation') }}"> Prestations </a>
 
             <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
-            <a href=""> Prestations </a>
             <a href=""> Créer une demande </a>
             <a href=""> Mes demandes </a>
             <a href=""> Connexion </a>
