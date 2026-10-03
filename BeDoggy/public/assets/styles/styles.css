@@ -452,7 +452,7 @@
     background-repeat : no-repeat;
     background-size: cover;
     background-position: center;
-    height: 700px;
+    height: 500px;
 
     font-family: "arial";
     color: white;
@@ -494,4 +494,61 @@
 
     font-size: 58px;
     font-weight: bold;
+}
+
+/* PRESTATION - Affichage des prestations */
+.affichagePrestation {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: auto;
+    background-color: #FFFEED;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+
+    align-items:center;
+    justify-items: center;
+
+    gap: 30px;
+}
+
+.affichagePrestation .eachPresta {
+    padding: 20px;
+    background-color: #FFF6E4;
+    border-radius: 40px;
+    width: 340px;
+    height: auto;
+
+    font-family: "arial";
+    
+    display: grid;
+    grid-template-rows: repeat(3, auto) repeat(2, 30px) auto;
+}
+
+.affichagePrestation .eachPresta:nth-child(odd) {
+    background-color:  #FFF6E4;
+}
+
+.affichagePrestation .eachPresta:nth-child(even) {
+    background-color: #FFE9BF;
+}
+
+.affichagePrestation .eachPresta img {
+    justify-self: center;
+    border-radius: 40px;
+    width: 330px;
+    height: 180px;
+}
+
+.affichagePrestation .eachPresta h3 {
+    font-size: 22px;
+}
+
+.affichagePrestation .eachPresta h2 {
+    justify-self: center;
+    padding-top: 20px;
+
+    font-weight: bold;
+    font-size: 32px;
 }

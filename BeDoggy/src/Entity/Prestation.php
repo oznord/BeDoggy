@@ -22,13 +22,13 @@ class Prestation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?int $nbSeance = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?float $prixSeance = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?int $tempsSeance = null;
 
     /**
