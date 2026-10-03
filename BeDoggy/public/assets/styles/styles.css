@@ -3,8 +3,10 @@
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     grid-template-rows: 1fr;
-    gap: 50px;
+    gap: 30px;
 }
+
+
 
 .nav-left {
     grid-column: 1;
@@ -32,6 +34,8 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     align-items:center;
+
+    gap: 10px;
 }
 
 .nav-center a {
@@ -504,7 +508,7 @@
     background-color: #FFFEED;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: auto;
 
     align-items:center;
@@ -513,12 +517,27 @@
     gap: 30px;
 }
 
+@media (max-width: 1450px) {
+    .affichagePrestation {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .affichagePrestation {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
 .affichagePrestation .eachPresta {
     padding: 20px;
     background-color: #FFF6E4;
-    border-radius: 40px;
+    border-radius: 30px;
     width: 340px;
     height: auto;
+    margin: 40px;
 
     font-family: "arial";
     
@@ -537,7 +556,7 @@
 .affichagePrestation .eachPresta img {
     justify-self: center;
     border-radius: 40px;
-    width: 330px;
+    width: 300px;
     height: 180px;
 }
 
