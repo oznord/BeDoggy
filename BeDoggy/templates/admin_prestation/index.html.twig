@@ -40,12 +40,23 @@
     <div class="adminAjoutPresta">
         <h2> Ajouter une prestation </h2>
         <div class="structureAjoutPresta">
-            <div class="leftColumnAdd">
-                <h3 class="libelle"> LIBELLE <span class="asterisque">*</span> </h3>
-                <input class="classiqueTextbox" type="text" name="libelle">
-                <h3 class="description"> DESCRIPTION <span class="asterisque">*</span> </h3>
-                <textarea class="longueTextbox" type="text" name="description"> </textarea>
+            <div class="blocInfosAjout">
+                <div class="leftColumnAdd">
+                    <h3 class="libelle"> LIBELLE <span class="asterisque">*</span> </h3>
+                    <input class="classiqueTextbox" type="text" name="libelle">
+                    <h3 class="description"> DESCRIPTION <span class="asterisque">*</span> </h3>
+                    <textarea class="longueTextbox" type="text" name="description"> </textarea>
+                </div>
+                <div class="rightColumnAdd">
+                    <h3> NOMBRE DE SEANCES </h3>
+                    <input type="number" name="nbSeances">
+                    <h3> PRIX SEANCE </h3>
+                    <input type="number" name="prixSeance">
+                    <h3> TEMPS SEANCE (en min) </h3>
+                    <input type="number" name="tempsSeance">
+                </div>
             </div>
+            <button class="btnAjoutPreta"> AJOUTER </button>
         </div>
     </div>
 
