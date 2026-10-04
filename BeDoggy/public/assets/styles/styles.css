@@ -615,12 +615,46 @@
     border-radius: 40px;
 
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.leftColumn {
+.leftColumnAdd {
     grid-column: 1;
+    padding-left: 50px;
 
     display: grid;
-    grid-template-rows: repeat(4, auto) 1fr;
+    grid-template-rows: repeat(4, auto);
+}
+
+.leftColumnAdd h3 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.leftColumnAdd h3 .libelle {
+    grid-row: 1;
+}
+
+.leftColumnAdd h3 .description {
+    grid-row: 2;
+}
+
+.leftColumnAdd input {
+    height: 20px;
+    border-radius: 30px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.leftColumnAdd .longueTextbox {
+    height: 200px;
+    border-radius: 30px;
+    padding: 20px;
+    font-family: "arial";
+    font-size: 30px;
+    margin-bottom: 60px;
+}
+
+.asterisque {
+    color: red;
 }
