@@ -44,16 +44,40 @@ final class AdminPrestationController extends AbstractController
         $tempsSeance = $request->request->get('tempsSeance');
         $image = $request->request->get('image');
 
-        if ($libelle === ""){
+        //Verif libelle
+        if ($libelle === "") {
             $message = "Le libellé est obligatoire";
-
         }
+        //Verif description
+        if ($description === "") {
+            $message = "La description est obligatoire";
+        }
+        //Verif nbSeances
+        if ($nbSeances !== null) {
+            if (!is_numeric($nbSeances) <= 0){
+                $message = "Vérifiez le nombre de séances.";
+            }
+        }
+        //Verif tempsSeance
+        if ($tempsSeance !== null) {
+            if (!is_numeric($tempsSeance) <= 0){
+                $message = "Vérifiez le nombre de séances.";
+            }
+        }
+        //Verif prix
+        if ($prix !== null) {
+            if ($prix <= 0 || !preg_match('/^\d+(\.\d{1,2})?$/', $prix)){
+                $message = "Prix invalide";
+            }
+        }
+
 
 
         if ($message !== null) {
-
+            return $this->render('admin_prestation/index.html.twig', [
+                'message' => $message,
+            ]);
         }
-
     }
 
 
