@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mes Demandes {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/styles/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
+            <p> BeDoggy </p>
+        </div>
+        <div class="nav-center">
+            <a href="{{ path('app_accueil') }}"> Accueil </a>
+            <a href="{{ path('app_prestation') }}"> Prestations </a>
+
+            <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
+        </div>
+
+        <div class="nav-right">
+            <form action="{{ path('app_inscription') }}">
+                <button>
+                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                    S'inscrire
+                </button>
+            </form>
+        </div>
+    </nav>
+
+
+<div class="GererDemande">
+    <h1> Mes Demandes </h1>
+    <p> Suivez l'historique et l'avancement de vos demandes. </p>
+
+        
+
+        <div class="gererDemandeRight">
+
+
+            <button class="creerDemande">
+                <a href=""> + Nouvelle demande </a> 
+            </button>
+
+        </div>
+
+
+        {% for demande in demandes %}
+            <div class="demande">
+                <div class="demandeLeft">
+                    <span> {%if demande.statut.id == '1' %} En attente {% elseif demande.statut.id == '2' %} Confirmée {% elseif demande.statut.id == '3' %} En cours {% elseif demande.statut.id == '4' %} Terminée {% else %} Refusée {% endif %} </span>
+                    <h2>  </h2>
+                    <p> {{ demande.description }} </p>
+                </div>
+                <div class="demandeRight">
+                    
+                    <p> Date de création : {{ demande.date|date('d/m/Y') }} </p>
+                </div>
+            </div>
+            {% else %}
+            <p>Vous n'avez pas de demandes en cours.</p>
+            {% endfor %}
+
+</div>
+
+{% endblock %}

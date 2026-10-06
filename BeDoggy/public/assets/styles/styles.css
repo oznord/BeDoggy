@@ -1,3 +1,5 @@
+
+
 /* Barre de navigation */
 .navbar {
     display: grid;
@@ -5,7 +7,6 @@
     grid-template-rows: 1fr;
     gap: 30px;
 }
-
 
 
 .nav-left {
@@ -151,6 +152,7 @@
     grid-template-columns: repeat(2, 1fr) 9fr 1fr;
     align-items:center;
 } 
+
 
 .boutonsAccueil .bouton1 img {
     grid-column: 2;
@@ -657,3 +659,70 @@
     width: 24px;
     height: auto;
 }
+
+
+
+
+
+/**********************************************************************************************************
+**********************************************************************************************************/
+
+/* MES DEMANDES */
+
+.GererDemande {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 20% 60% 20%;
+    gap: 20px;
+    padding: 20px;
+}
+
+.GererDemande h1
+    {
+        font-family: Arial, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: left;
+        grid-column: 2;
+    }
+
+.GererDemande p
+    {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        text-align: left;
+        grid-column: 2;
+    }
+
+
+
+.GererDemande button
+    {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        text-align: left;
+        grid-column: 2;
+        background-color: #008d00bd;
+        color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 40px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+.demande  {
+    grid-row: 3;
+    gap: 20px;
+}
+
+.demandeLeft span{
+    gap: 20px;
+    color: #008d00bd;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 6px 20px;
+    background-color: #3cf5173f;
+}
+
