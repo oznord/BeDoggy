@@ -75,5 +75,38 @@
             </div>
         </div>
     </form>
+    <div class="adminModifSupprPresta">
+        <h2> Modifier / Supprimer une prestation </h2>
+    </div>
+    <div class="affichagePrestation">
+        {% for prestation in prestations %}
+            <div class="eachPresta">
+                <img src="{{ asset('assets/images/prestations/' ~ prestation.image) }}">
+                <h1> {{ prestation.libelle }} </h1>
+                <p> {{ prestation.description }} </p>
+                <!-- Nombre de séances -->
+                {% if prestation.nbSeance is not null %}
+                    <h3> {{ prestation.nbSeance }} séance(s) </h3>
+                {% else %}
+                    <h3> Nombre de séances adaptable </h3>
+                {% endif %}
+                <!-- Temps de chaque séance -->
+                {%  if prestation.tempsSeance is not null %}
+                    {% set heures = prestation.tempsSeance // 60 %}
+                    {% set minutes = prestation.tempsSeance % 60 %}
+                    <h3> {{ heures }}h{% if minutes > 0 %}{{ '%02d' | format(minutes) }}{% endif %} par séance</h3>
+                {% else %}
+                    <h3> Temps adaptable </h3>
+                {% endif %}
+                <!-- Prix de chaque séance --> 
+                {%  if prestation.prixSeance is not null %}
+                    <h2> {{ prestation.prixSeance }}€ la séance </h2>
+                {% else %}
+                    <h2> Prix adaptable </h2>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    
 
 {% endblock %}

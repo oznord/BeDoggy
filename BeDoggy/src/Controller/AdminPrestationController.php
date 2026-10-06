@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Prestation;
+use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,21 +14,27 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AdminPrestationController extends AbstractController
 {
     #[Route('/admin/prestation', name: 'app_admin_prestation')]
-    public function index(): Response
+    public function index(PrestationRepository $prestationRepository): Response
     {
         $images = $this->getImages();
+        $prestations = $prestationRepository->findAll();
 
         return $this->render('admin_prestation/index.html.twig', [
             'images' => $images,
+            'prestations' => $prestations
         ]);
     }
 
     #[Route('/admin/prestation/ajout', name: 'app_admin_prestation_ajout', methods: ['POST'])]
     public function ajoutPrestation(
+        PrestationRepository $prestationRepository,
         Request $request,
         EntityManagerInterface $entityManager
         ): Response
     {
+        //On récupère les prestations pour les afficher sur la page, erreur de traitement ou non
+        $prestations = $prestationRepository->findAll();
+
         $message = null;
 
         //Récupération des informations
@@ -74,6 +81,7 @@ final class AdminPrestationController extends AbstractController
             return $this->render('admin_prestation/index.html.twig', [
                 'message' => $message,
                 'images' => $images,
+                'prestations' => $prestations,
                 'typeMessage' => 'erreur'
             ]);
         }
@@ -102,6 +110,7 @@ final class AdminPrestationController extends AbstractController
         return $this->render('admin_prestation/index.html.twig', [
             'message' => $message,
             "images" => $images,
+            'prestations' => $prestations,
             'typeMessage' => 'ajout',
         ]);
     }
