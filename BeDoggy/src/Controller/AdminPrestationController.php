@@ -22,7 +22,7 @@ final class AdminPrestationController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/prestation', name: 'app_admin_prestation_ajout', methods: ['POST'])]
+    #[Route('/admin/prestation/ajout', name: 'app_admin_prestation_ajout', methods: ['POST'])]
     public function ajoutPrestation(
         Request $request,
         EntityManagerInterface $entityManager
@@ -41,28 +41,28 @@ final class AdminPrestationController extends AbstractController
 
         //Verif libelle
         if ($libelle === "") {                                  //Ne doit pas être vide
-            $message = "Le libellé est obligatoire";
+            $message = "Erreur lors de l'ajout : Le libellé est obligatoire.";
         }
         //Verif description
-        elseif ($description === "") {                              //Ne doit pas être vide
-            $message = "La description est obligatoire";
+        if ($description === "") {                              //Ne doit pas être vide
+            $message = "Erreur lors de l'ajout : La description est obligatoire.";
         }
         //Verif nbSeances
-        elseif ($nbSeances !== null && $nbSeances !== '') {                              //Doit être un nombre entier
+        if ($nbSeances !== null && $nbSeances !== '') {                              //Doit être un nombre entier
             if (!is_numeric($nbSeances) || $nbSeances <= 0){
-                $message = "Vérifiez le nombre de séances.";
+                $message = "Erreur lors de l'ajout : Vérifiez le nombre de séances.";
             }
         }
         //Verif tempsSeance
-        elseif ($tempsSeance !== null) {
+        if ($tempsSeance !== null && $tempsSeance != '') {
             if (!is_numeric($tempsSeance) || $tempsSeance <= 0){                //Doit être un nombre entier
-                $message = "Vérifiez le nombre de séances.";
+                $message = "Erreur lors de l'ajout : Vérifiez le nombre de séances.";
             }
         }
         //Verif prix 
-        elseif ($prix !== null && $prix != '') {                                   
-            if ($prix <= 0 || !preg_match('/^\d+(\.\d{1,2})?$/', $prix)){           //Doit avoir au maximum 2 chiffres après la virgule
-                $message = "Prix invalide";
+        if ($prix !== null && $prix != '') {                                   
+            if ($prix <= 0 || !preg_match("/"."^\d+([.,]\d{1,2})?$/", $prix)){           //Doit avoir au maximum 2 chiffres après la virgule
+                $message = "Erreur lors de l'ajout : Prix invalide.";
             }
         }
 
@@ -73,6 +73,8 @@ final class AdminPrestationController extends AbstractController
         if ($message !== null) {
             return $this->render('admin_prestation/index.html.twig', [
                 'message' => $message,
+                'images' => $images,
+                'typeMessage' => 'erreur'
             ]);
         }
 
@@ -94,12 +96,13 @@ final class AdminPrestationController extends AbstractController
             $message = "L'ajout a bien été effectué.";
         }
         catch (Exception $e) {
-            $message = "Une erreur est survenue lors de l'enregistrement";
+            $message = "Une erreur est survenue lors de l'enregistrement.";
         }
         
         return $this->render('admin_prestation/index.html.twig', [
             'message' => $message,
-            "images" => $images
+            "images" => $images,
+            'typeMessage' => 'ajout',
         ]);
     }
 

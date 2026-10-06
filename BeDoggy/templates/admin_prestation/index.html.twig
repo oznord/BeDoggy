@@ -40,6 +40,9 @@
     <form action="{{ path('app_admin_prestation_ajout') }}" method="POST">
         <div class="adminAjoutPresta">
             <h2> Ajouter une prestation </h2>
+            {% if message is defined and message is not null %}
+                <p class="message {{ typeMessage }}"> {{ message }}</p>
+            {% endif %}
             <div class="structureAjoutPresta">
                 <div class="blocInfosAjout">
                     <div class="leftColumnAdd">

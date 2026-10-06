@@ -591,7 +591,7 @@
 
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: repeat(2, auto) 1fr;
 }
 
 .adminAjoutPresta h2 {
@@ -604,9 +604,25 @@
     margin-bottom: 0px;
 }
 
-.structureAjoutPresta {
+.message {
     grid-column: 2;
     grid-row: 2;
+    color: red;
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+.message.erreur {
+    color: red;
+}
+
+.message.ajout {
+    color: green;
+}
+
+.structureAjoutPresta {
+    grid-column: 2;
+    grid-row: 3;
     justify-self: center;
     margin-top: 20px;
 
