@@ -22,13 +22,13 @@ class Prestation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?int $nbSeance = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?float $prixSeance = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?int $tempsSeance = null;
 
     /**
@@ -36,6 +36,9 @@ class Prestation
      */
     #[ORM\ManyToMany(targetEntity: Demande::class, mappedBy: 'Correspondre')]
     private Collection $demandes;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -130,6 +133,18 @@ class Prestation
         if ($this->demandes->removeElement($demande)) {
             $demande->removeCorrespondre($this);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -7,19 +7,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\PrestationRepository;
 
-final class AccueilController extends AbstractController
+final class PrestationController extends AbstractController
 {
-    #[Route('/', name: 'app_accueil')]
+    #[Route('/prestation', name: 'app_prestation')]
     public function index(PrestationRepository $prestationRepository): Response
     {
-        $prestations = $prestationRepository->findBy(
-            [],
-            ['id' => 'ASC'],
-            3
-            );
+        // Récupération des données de toutes les prestations
+        $prestations = $prestationRepository->findAll();
 
-        return $this->render('accueil/index.html.twig', [
-            'controller_name' => 'AccueilController',
+        return $this->render('prestation/index.html.twig', [
             'prestations' => $prestations,
         ]);
     }
