@@ -4,27 +4,19 @@
 
 {% block body %}
     <div class="creation-demande-page">
-        <nav class="navbar creation-navbar">
-            <a class="creation-logo" href="{{ path('app_accueil') }}">
+        <nav class="admin-navbar">
+            <a class="admin-logo" href="{{ path('app_accueil') }}">
                 <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
             </a>
-            <div class="creation-navigation">
+            <div class="admin-navigation">
                 <a href="{{ path('app_accueil') }}">Accueil</a>
                 <a href="{{ path('app_prestation') }}">Prestations</a>
-                <a class="is-active" href="{{ path('app_ajouter_demande') }}">Créer une demande</a>
                 <a href="{{ path('app_gerer_demande') }}">Mes demandes</a>
                 {% if app.user and app.user.role and app.user.role.id == 1 %}
                     <a href="{{ path('app_traiter_demande') }}">Administration</a>
                 {% endif %}
             </div>
-            <div class="creation-actions">
-                {% if app.user %}
-                    <a class="creation-register" href="{{ path('app_logout') }}">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('app_login') }}">Se connecter</a>
-                    <a class="creation-register" href="{{ path('app_inscription') }}">S'inscrire</a>
-                {% endif %}
-            </div>
+            <a class="admin-logout" href="{{ path('app_logout') }}">Déconnexion</a>
         </nav>
 
         <main class="creation-content">

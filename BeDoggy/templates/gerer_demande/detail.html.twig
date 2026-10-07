@@ -8,21 +8,19 @@
     {% set statutClasse = statut|replace({' ': '-'}) %}
 
     <div class="demandes-page">
-        <nav class="navbar demandes-navbar">
-            <a class="demandes-logo" href="{{ path('app_accueil') }}">
+        <nav class="admin-navbar">
+            <a class="admin-logo" href="{{ path('app_accueil') }}">
                 <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
             </a>
-            <div class="demandes-navigation">
-                <a class="is-active" href="{{ path('app_gerer_demande') }}">Mes demandes</a>
+            <div class="admin-navigation">
+                <a href="{{ path('app_accueil') }}">Accueil</a>
                 <a href="{{ path('app_prestation') }}">Prestations</a>
+                <a class="is-active" href="{{ path('app_gerer_demande') }}">Mes demandes</a>
                 {% if app.user.role and app.user.role.id == 1 %}
                     <a href="{{ path('app_traiter_demande') }}">Administration</a>
                 {% endif %}
             </div>
-            <div class="demandes-actions" aria-label="Actions utilisateur">
-                <span class="demandes-user-icon">{{ app.user.prenom|first }}</span>
-                <a href="{{ path('app_logout') }}" class="demandes-logout" aria-label="Déconnexion">↪</a>
-            </div>
+            <a class="admin-logout" href="{{ path('app_logout') }}">Déconnexion</a>
         </nav>
 
         <main class="demandes-content demande-detail-content">

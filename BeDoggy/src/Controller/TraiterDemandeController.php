@@ -30,12 +30,7 @@ final class TraiterDemandeController extends AbstractController
             throw $this->createAccessDeniedException('Cette page est réservée aux administrateurs.');
         }
 
-        $statuts = array_values(array_filter(
-            $statutRepository->findAll(),
-            static function (Statut $statut): bool {
-                return in_array(mb_strtolower($statut->getLibelle() ?? ''), ['en attente', 'en cours', 'terminée'], true);
-            }
-        ));
+        $statuts = $statutRepository->findBy([], ['id' => 'ASC']);
 
         if ($request->isMethod('POST')) {
             $demandeId = filter_var($request->request->get('demande_id'), FILTER_VALIDATE_INT);
@@ -43,13 +38,10 @@ final class TraiterDemandeController extends AbstractController
             $demande = $demandeId ? $demandeRepository->find($demandeId) : null;
             $statut = $statutId ? $statutRepository->find($statutId) : null;
 
-            $statutAutorise = $statut instanceof Statut
-                && in_array(mb_strtolower($statut->getLibelle() ?? ''), ['en attente', 'en cours', 'terminée'], true);
-
             if (
                 !$this->isCsrfTokenValid('traiter_demande_' . $demandeId, $request->request->get('_token'))
                 || !$demande instanceof Demande
-                || !$statutAutorise
+                || !$statut instanceof Statut
             ) {
                 $this->addFlash('error', 'La modification de la demande est invalide.');
             } else {
