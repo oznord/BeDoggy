@@ -866,6 +866,20 @@
     color: #9bb9aa;
 }
 
+.demande-reponse {
+    margin: 12px 0 0;
+    padding: 9px 10px;
+    border-left: 3px solid #8bc9a2;
+    color: #557866;
+    background: #f3fbf5;
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.demande-reponse strong {
+    color: #174d35;
+}
+
 .demande-card-footer {
     margin-top: 17px;
     padding-top: 13px;
@@ -893,6 +907,72 @@
     border-radius: 50%;
     background: #effaf3;
     font-size: 17px;
+}
+
+.demande-detail-content {
+    max-width: 810px;
+}
+
+.demande-retour {
+    display: inline-block;
+    margin-bottom: 26px;
+    color: #167243;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.demande-detail-content .demandes-header {
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.demande-detail-content .demandes-header h1 {
+    margin-top: 8px;
+}
+
+.demande-detail-card {
+    padding: 26px;
+    border: 1px solid #e5ebe7;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(21, 54, 37, .08);
+}
+
+.demande-detail-block {
+    padding-bottom: 22px;
+    border-bottom: 1px solid #edf1ef;
+}
+
+.demande-detail-response {
+    margin-top: 22px;
+    padding: 18px;
+    border-left: 4px solid #8bc9a2;
+    border-radius: 4px;
+    background: #f3fbf5;
+}
+
+.demande-detail-label {
+    display: block;
+    margin-bottom: 9px;
+    color: #78a58e;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .8px;
+}
+
+.demande-detail-block p,
+.demande-detail-response p {
+    margin: 0;
+    color: #557866;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.demande-no-response {
+    color: #9bb9aa !important;
+    font-style: italic;
 }
 
 .demandes-empty {
@@ -1209,5 +1289,409 @@
     .creation-submit,
     .creation-cancel {
         width: 100%;
+    }
+}
+
+/* ADMINISTRATION - DEMANDES CLIENTS */
+
+.admin-demandes-page {
+    min-height: 100vh;
+    color: #063b23;
+    background: #f7faf8;
+    font-family: Arial, sans-serif;
+}
+
+.admin-navbar {
+    min-height: 70px;
+    padding: 0 max(22px, calc((100% - 1120px) / 2));
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+    align-items: center;
+    border-bottom: 1px solid #e1ebe4;
+    background: #ffffff;
+}
+
+.admin-logo img {
+    display: block;
+    width: 100px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.admin-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+}
+
+.admin-navigation a,
+.admin-logout {
+    padding: 25px 0 19px;
+    color: #78a58e;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.admin-navigation a.is-active {
+    border-bottom: 2px solid #167243;
+    color: #063b23;
+}
+
+.admin-logout {
+    color: #167243;
+}
+
+.admin-demandes-content {
+    width: min(100% - 44px, 1120px);
+    margin: 0 auto;
+    padding: 43px 0 70px;
+}
+
+.admin-demandes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 30px;
+}
+
+.admin-eyebrow {
+    color: #78a58e;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.admin-demandes-header h1 {
+    margin: 8px 0 7px;
+    color: #063b23;
+    font-size: 31px;
+    text-align: left;
+}
+
+.admin-demandes-header p {
+    margin: 0;
+    color: #78a58e;
+    font-size: 14px;
+}
+
+.admin-total {
+    min-width: 105px;
+    padding: 12px 18px;
+    border: 1px solid #dcebe1;
+    border-radius: 10px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.admin-total strong {
+    display: block;
+    color: #167243;
+    font-size: 24px;
+}
+
+.admin-total span {
+    color: #78a58e;
+    font-size: 11px;
+}
+
+.admin-alert {
+    margin: 0 0 18px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.admin-alert-success {
+    color: #176139;
+    background: #e2f8ea;
+}
+
+.admin-alert-error {
+    color: #8a1c1c;
+    background: #ffe8e8;
+}
+
+.admin-demandes-list {
+    display: grid;
+    gap: 17px;
+}
+
+.admin-demande-card {
+    padding: 22px 25px 20px;
+    border: 1px solid #dfebe3;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(21, 54, 37, .07);
+}
+
+.admin-demande-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #edf1ef;
+}
+
+.admin-reference {
+    color: #9bb9aa;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+.admin-demande-card h2 {
+    margin: 7px 0 0;
+    color: #063b23;
+    font-size: 19px;
+}
+
+.admin-demande-card-header time {
+    color: #78a58e;
+    font-size: 12px;
+}
+
+.admin-demande-info {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 35px;
+    padding: 17px 0 19px;
+}
+
+.admin-demande-info > div {
+    display: grid;
+    align-content: start;
+    gap: 5px;
+}
+
+.admin-info-label,
+.admin-field label {
+    color: #78a58e;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .8px;
+}
+
+.admin-demande-info strong {
+    color: #174d35;
+    font-size: 13px;
+}
+
+.admin-demande-info small {
+    color: #9bb9aa;
+    font-size: 11px;
+}
+
+.admin-demande-info p {
+    margin: 0;
+    color: #557866;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.admin-demande-form {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 18px;
+    align-items: end;
+    padding-top: 17px;
+    border-top: 1px solid #edf1ef;
+}
+
+.admin-field {
+    display: grid;
+    gap: 7px;
+}
+
+.admin-field select,
+.admin-field textarea {
+    width: 100%;
+    border: 1px solid #cfe1d5;
+    border-radius: 8px;
+    padding: 10px 11px;
+    color: #174d35;
+    background: #f8fcf9;
+    font: 12px Arial, sans-serif;
+}
+
+.admin-field select {
+    height: 39px;
+}
+
+.admin-field textarea {
+    min-height: 39px;
+    resize: vertical;
+}
+
+.admin-field select:focus,
+.admin-field textarea:focus {
+    outline: 2px solid rgba(23, 97, 57, .15);
+    border-color: #167243;
+}
+
+.admin-save-button {
+    min-width: 122px;
+    height: 39px;
+    border: 0;
+    border-radius: 8px;
+    color: #ffffff;
+    background: #003d22;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-save-button:hover {
+    background: #075b35;
+}
+
+.admin-empty {
+    padding: 45px;
+    border: 1px dashed #c8ddd0;
+    border-radius: 12px;
+    color: #78a58e;
+    background: #ffffff;
+    text-align: center;
+}
+
+@media (max-width: 760px) {
+    .admin-navbar {
+        grid-template-columns: 90px 1fr auto;
+        padding: 0 15px;
+    }
+
+    .admin-logo img {
+        width: 80px;
+    }
+
+    .admin-navigation {
+        gap: 14px;
+    }
+
+    .admin-navigation a,
+    .admin-logout {
+        font-size: 11px;
+    }
+
+    .admin-demandes-content {
+        width: min(100% - 28px, 600px);
+        padding-top: 28px;
+    }
+
+    .admin-demandes-header {
+        align-items: start;
+        gap: 20px;
+    }
+
+    .admin-demandes-header h1 {
+        font-size: 26px;
+    }
+
+    .admin-demande-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .admin-demande-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-response-field {
+        grid-column: 1 / -1;
+    }
+
+    .admin-save-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-navbar {
+        min-height: 58px;
+        grid-template-columns: 76px 1fr;
+    }
+
+    .admin-navigation {
+        justify-content: end;
+    }
+
+    .admin-navigation a:nth-child(2),
+    .admin-logout {
+        display: none;
+    }
+
+    .admin-demandes-header {
+        flex-direction: column;
+    }
+
+    .admin-total {
+        align-self: stretch;
+    }
+
+    .admin-demande-card {
+        padding: 18px 16px;
+    }
+
+    .admin-demande-form {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-response-field {
+        grid-column: auto;
+    }
+}
+
+/* AUTHENTIFICATION DE LA NAVIGATION */
+
+.nav-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-auth-button {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-login-button {
+    border: 1px solid #167243;
+    color: #167243;
+    background: #ffffff;
+}
+
+.nav-register-button,
+.nav-logout-button {
+    background: linear-gradient(to right, #056500, #08a100);
+}
+
+.nav-logout-button {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.boutonsAccueil .bouton1 {
+    display: grid;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (max-width: 700px) {
+    .nav-right {
+        gap: 4px;
+    }
+
+    .nav-auth-button {
+        padding: 8px 9px;
+        font-size: 10px;
     }
 }

@@ -13,6 +13,9 @@
             <a href="{{ path('app_prestation') }}"> Prestations </a>
 
             <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
+            {% if app.user and app.user.role and app.user.role.id == 1 %}
+                <a href="{{ path('app_traiter_demande') }}">Administration</a>
+            {% endif %}
 
 
             <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
@@ -22,12 +25,12 @@
             -->
         </div>
         <div class="nav-right">
-            <form action="{{ path('app_inscription') }}">
-                <button>
-                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
-                    S'inscrire
-                </button>
-            </form>
+            {% if app.user %}
+                <a class="nav-auth-button nav-logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a class="nav-auth-button nav-login-button" href="{{ path('app_login') }}">Se connecter</a>
+                <a class="nav-auth-button nav-register-button" href="{{ path('app_inscription') }}">S'inscrire</a>
+            {% endif %}
         </div>
     </nav>
 

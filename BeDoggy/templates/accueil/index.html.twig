@@ -13,6 +13,9 @@
             <a href="{{ path('app_prestation') }}"> Prestations </a>
 
             <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
+            {% if app.user and app.user.role and app.user.role.id == 1 %}
+                <a href="{{ path('app_traiter_demande') }}">Administration</a>
+            {% endif %}
 
             <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
             <a href=""> Créer une demande </a>
@@ -21,12 +24,12 @@
             -->
         </div>
         <div class="nav-right">
-            <form action="{{ path('app_inscription') }}">
-                <button>
-                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
-                    S'inscrire
-                </button>
-            </form>
+            {% if app.user %}
+                <a class="nav-auth-button nav-logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a class="nav-auth-button nav-login-button" href="{{ path('app_login') }}">Se connecter</a>
+                <a class="nav-auth-button nav-register-button" href="{{ path('app_inscription') }}">S'inscrire</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -40,14 +43,14 @@
             et le suivi de leurs demandes. Profitez de prestations professionnelles, 
             simples et rapides, pour le bonheur de vos chiens. </p>
             <div class="boutonsAccueil">
-                <button class="bouton1">
+                <a class="bouton1" href="{{ path('app_prestation') }}">
                     <img src="{{ asset('assets/images/patte blanche.png')}}" alt="patteBlanche">
-                    Découvrir nos prestations → 
-                </button>
-                <form action="{{ path('app_inscription') }}">
+                    Découvrir nos prestations →
+                </a>
+                <form action="{{ app.user ? path('app_ajouter_demande') : path('app_inscription') }}">
                     <button class="bouton2">
                         <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
-                        Créer un compte
+                        {{ app.user ? 'Créer une demande' : 'Créer un compte' }}
                     </button>
                 </form>
             </div>

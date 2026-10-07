@@ -21,7 +21,10 @@ final class AjouterDemandeController extends AbstractController
         PrestationRepository $prestationRepository
     ): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $utilisateur = $this->getUser();
 
         if ($request->isMethod('POST')) {
