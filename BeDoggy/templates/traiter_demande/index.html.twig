@@ -9,9 +9,10 @@
                 <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
             </a>
             <div class="admin-navigation">
-                <a class="is-active" href="{{ path('app_traiter_demande') }}">Demandes clients</a>
+                <a href="{{ path('app_accueil') }}">Accueil</a>
                 <a href="{{ path('app_prestation') }}">Prestations</a>
                 <a href="{{ path('app_gerer_demande') }}">Mes demandes</a>
+                <a class="is-active" href="{{ path('app_traiter_demande') }}">Administration</a>
             </div>
             <a class="admin-logout" href="{{ path('app_logout') }}">Déconnexion</a>
         </nav>
