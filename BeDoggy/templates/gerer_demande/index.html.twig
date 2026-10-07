@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mes Demandes {% endblock %}
+
+{% block body %}
+    <div class="demandes-page">
+        <nav class="navbar demandes-navbar">
+            <a class="demandes-logo" href="{{ path('app_accueil') }}">
+                <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
+            </a>
+            <div class="demandes-navigation">
+                <a class="is-active" href="{{ path('app_gerer_demande') }}">Mes demandes</a>
+                <a href="{{ path('app_prestation') }}">Prestations</a>
+                {% if app.user and app.user.role and app.user.role.id == 1 %}
+                    <a href="{{ path('app_traiter_demande') }}">Administration</a>
+                {% endif %}
+            </div>
+            <div class="demandes-actions" aria-label="Actions utilisateur">
+                <span class="demandes-user-icon" aria-hidden="true">{{ app.user ? app.user.prenom|first : 'U' }}</span>
+                <a href="{{ path('app_logout') }}" class="demandes-logout" aria-label="Déconnexion">↪</a>
+            </div>
+        </nav>
+
+        <main class="demandes-content">
+            <header class="demandes-header">
+                <div>
+                    <h1>Mes demandes</h1>
+                    <p>Suivez l'historique et l'avancement de vos demandes.</p>
+                </div>
+                <a class="nouvelle-demande" href="{{ path('app_ajouter_demande') }}">
+                    <span aria-hidden="true">+</span> Nouvelle demande
+                </a>
+            </header>
+
+            {% if demandes is not empty %}
+                <section class="demandes-grid" aria-label="Liste de vos demandes">
+                    {% for demande in demandes %}
+                        {% set prestation = demande.correspondre|first %}
+                        {% set statut = demande.statut ? demande.statut.libelle|default('')|lower : '' %}
+                        {% set statutClasse = statut|replace({' ': '-'}) %}
+                        <article class="demande-card">
+                            <div class="demande-card-image">
+                                {% if prestation and prestation.image %}
+                                    <img src="{{ asset('assets/images/prestations/' ~ prestation.image) }}" alt="">
+                                {% else %}
+                                    <img src="{{ asset('assets/images/fondChien.png') }}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="demande-card-body">
+                                <div class="demande-card-meta">
+                                    <span class="demande-statut statut-{{ statutClasse }}">
+                                        {{ demande.statut ? demande.statut.libelle : 'Statut inconnu' }}
+                                    </span>
+                                    <span class="demande-reference">REQ-{{ '%03d'|format(demande.id) }}</span>
+                                </div>
+                                <h2>{{ prestation ? prestation.libelle : 'Demande de prestation' }}</h2>
+                                {% if demande.description %}
+                                    <p class="demande-description">{{ demande.description }}</p>
+                                {% endif %}
+                                <p class="demande-date">
+                                    <span aria-hidden="true">◫</span>
+                                    {{ demande.date ? demande.date|date('d F Y') : 'Date non renseignée' }}
+                                </p>
+                                {% if demande.reponse %}
+                                    <p class="demande-reponse">
+                                        <strong>Réponse de BeDoggy :</strong> {{ demande.reponse }}
+                                    </p>
+                                {% endif %}
+                                <div class="demande-card-footer">
+                                    <span>Demande envoyée</span>
+                                    <a href="{{ path('app_gerer_demande_detail', {id: demande.id}) }}">Voir les détails <span aria-hidden="true">›</span></a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </section>
+            {% else %}
+                <p class="demandes-empty">Vous n'avez pas encore de demande.</p>
+            {% endif %}
+        </main>
+    </div>
+
+{% endblock %}

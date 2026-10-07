@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - Demandes{% endblock %}
+
+{% block body %}
+    <div class="admin-demandes-page">
+        <nav class="admin-navbar">
+            <a class="admin-logo" href="{{ path('app_accueil') }}">
+                <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
+            </a>
+            <div class="admin-navigation">
+                <a class="is-active" href="{{ path('app_traiter_demande') }}">Demandes clients</a>
+                <a href="{{ path('app_prestation') }}">Prestations</a>
+                <a href="{{ path('app_gerer_demande') }}">Mes demandes</a>
+            </div>
+            <a class="admin-logout" href="{{ path('app_logout') }}">Déconnexion</a>
+        </nav>
+
+        <main class="admin-demandes-content">
+            <header class="admin-demandes-header">
+                <div>
+                    <span class="admin-eyebrow">ESPACE ADMINISTRATEUR</span>
+                    <h1>Demandes clients</h1>
+                    <p>Consultez et traitez les demandes envoyées par les clients.</p>
+                </div>
+                <div class="admin-total">
+                    <strong>{{ demandes|length }}</strong>
+                    <span>demande{{ demandes|length > 1 ? 's' : '' }}</span>
+                </div>
+            </header>
+
+            {% for message in app.flashes('success') %}
+                <p class="admin-alert admin-alert-success">{{ message }}</p>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <p class="admin-alert admin-alert-error">{{ message }}</p>
+            {% endfor %}
+
+            {% if demandes is not empty %}
+                <section class="admin-demandes-list" aria-label="Demandes des clients">
+                    {% for demande in demandes %}
+                        {% set prestation = demande.correspondre|first %}
+                        <article class="admin-demande-card">
+                            <div class="admin-demande-card-header">
+                                <div>
+                                    <span class="admin-reference">REQ-{{ '%03d'|format(demande.id) }}</span>
+                                    <h2>{{ prestation ? prestation.libelle : 'Demande de prestation' }}</h2>
+                                </div>
+                                <time datetime="{{ demande.date|date('Y-m-d') }}">{{ demande.date|date('d/m/Y') }}</time>
+                            </div>
+
+                            <div class="admin-demande-info">
+                                <div>
+                                    <span class="admin-info-label">CLIENT</span>
+                                    <strong>{{ demande.utilisateur ? demande.utilisateur.prenom ~ ' ' ~ demande.utilisateur.nom : 'Client inconnu' }}</strong>
+                                    <small>{{ demande.utilisateur ? demande.utilisateur.mail : '' }}</small>
+                                </div>
+                                <div>
+                                    <span class="admin-info-label">DESCRIPTION</span>
+                                    <p>{{ demande.description ?: 'Aucune description renseignée.' }}</p>
+                                </div>
+                            </div>
+
+                            <form class="admin-demande-form" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token('traiter_demande_' ~ demande.id) }}">
+                                <input type="hidden" name="demande_id" value="{{ demande.id }}">
+                                <div class="admin-field admin-status-field">
+                                    <label for="statut-{{ demande.id }}">Statut</label>
+                                    <select id="statut-{{ demande.id }}" name="statut" required>
+                                        {% for statut in statuts %}
+                                            <option value="{{ statut.id }}" {{ demande.statut and demande.statut.id == statut.id ? 'selected' : '' }}>
+                                                {{ statut.libelle }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="admin-field admin-response-field">
+                                    <label for="reponse-{{ demande.id }}">Réponse au client</label>
+                                    <textarea id="reponse-{{ demande.id }}" name="reponse" rows="2" placeholder="Rédigez une réponse visible par le client...">{{ demande.reponse }}</textarea>
+                                </div>
+                                <button class="admin-save-button" type="submit">Enregistrer</button>
+                            </form>
+                        </article>
+                    {% endfor %}
+                </section>
+            {% else %}
+                <p class="admin-empty">Aucune demande client n'a encore été envoyée.</p>
+            {% endif %}
+        </main>
+    </div>
+{% endblock %}
