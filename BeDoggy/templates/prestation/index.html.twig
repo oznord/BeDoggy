@@ -11,6 +11,7 @@
         <div class="nav-center">
             <a href="{{ path('app_accueil') }}"> Accueil </a>
             <a href="{{ path('app_prestation') }}"> Prestations </a>
+            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
 
             <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
             {% if app.user and app.user.role and app.user.role.id == 1 %}
@@ -70,8 +71,6 @@
                 {% endif %}
             </div>
         {% endfor %}
-
-
     </div>
 
 

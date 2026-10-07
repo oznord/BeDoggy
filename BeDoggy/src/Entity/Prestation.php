@@ -79,7 +79,7 @@ class Prestation
         return $this->nbSeance;
     }
 
-    public function setNbSeance(int $nbSeance): static
+    public function setNbSeance(?int $nbSeance): static
     {
         $this->nbSeance = $nbSeance;
 
@@ -91,7 +91,7 @@ class Prestation
         return $this->prixSeance;
     }
 
-    public function setPrixSeance(float $prixSeance): static
+    public function setPrixSeance(?float $prixSeance): static
     {
         $this->prixSeance = $prixSeance;
 
@@ -103,7 +103,7 @@ class Prestation
         return $this->tempsSeance;
     }
 
-    public function setTempsSeance(int $tempsSeance): static
+    public function setTempsSeance(?int $tempsSeance): static
     {
         $this->tempsSeance = $tempsSeance;
 

@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des prestations{% endblock %}
+
+{% block body %}
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
+            <p> BeDoggy </p>
+        </div>
+        <div class="nav-center">
+            <a href="{{ path('app_accueil') }}"> Accueil </a>
+            <a href="{{ path('app_prestation') }}"> Prestations </a>
+            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
+
+            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
+            <a href=""> Créer une demande </a>
+            <a href=""> Mes demandes </a>
+            <a href=""> Connexion </a>
+            -->
+        </div>
+        <div class="nav-right">
+            <form action="{{ path('app_inscription') }}">
+                <button>
+                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                    S'inscrire
+                </button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Haut de page -->
+    <div class="presentationPrestation">
+        <div class="layoutHautPagePresta">
+            <h2> Nos Prestations </h2>
+            <div class="traitBlanc"></div>
+            <h1> Education canine Personnalisée </h1>
+        </div>
+    </div>
+    <form action="{{ path('app_admin_prestation_ajout') }}" method="POST">
+        <div class="adminAjoutPresta">
+            <h2> Ajouter une prestation </h2>
+            {% if message is defined and message is not null %}
+                <p class="message {{ typeMessage }}"> {{ message }}</p>
+            {% endif %}
+            <div class="structureAjoutPresta">
+                <div class="blocInfosAjout">
+                    <div class="leftColumnAdd">
+                        <h3 class="libelle"> LIBELLE <span class="asterisque">*</span> </h3>
+                        <input class="classiqueTextbox" type="text" name="libelle">
+                        <h3 class="description"> DESCRIPTION <span class="asterisque">*</span> </h3>
+                        <textarea class="longueTextbox" type="text" name="description"> </textarea>
+                    </div>
+                    <div class="rightColumnAdd">
+                        <h3> NOMBRE DE SEANCES </h3>
+                        <input type="number" name="nbSeances">
+                        <h3> PRIX SEANCE </h3>
+                        <input type="number" name="prixSeance">
+                        <h3> TEMPS SEANCE (en min) </h3>
+                        <input type="number" name="tempsSeance">
+                    </div>
+                </div>
+                <div class="titreImage">
+                    <h3> IMAGE </h3>
+                </div>
+                <div class="choixImage">
+                    {% for image in images %}
+                        <label class="imageDuChoix">
+                            <input type="radio" name="image" value="{{ image }}">
+                            <img src="{{ asset('assets/images/prestations/' ~ image) }}">
+                        </label>
+                    {% endfor %}
+                </div>
+                <button class="btnAjoutPreta"> AJOUTER </button>
+            </div>
+        </div>
+    </form>
+    <div class="adminModifSupprPresta">
+        <h2> Modifier / Supprimer une prestation </h2>
+        {% if messageOperation is defined and messageOperation is not null %}
+            <p class="messageOperation {{ typeMessageOperation }}"> {{ messageOperation }}</p>
+        {% endif %}
+    </div>
+    <div class="affichagePrestation">
+        {% for prestation in prestations %}
+            <div class="eachPresta">
+                <img src="{{ asset('assets/images/prestations/' ~ prestation.image) }}">
+                <h1> {{ prestation.libelle }} </h1>
+                <p> {{ prestation.description }} </p>
+                <!-- Nombre de séances -->
+                {% if prestation.nbSeance is not null %}
+                    <h3> {{ prestation.nbSeance }} séance(s) </h3>
+                {% else %}
+                    <h3> Nombre de séances adaptable </h3>
+                {% endif %}
+                <!-- Temps de chaque séance -->
+                {%  if prestation.tempsSeance is not null %}
+                    {% set heures = prestation.tempsSeance // 60 %}
+                    {% set minutes = prestation.tempsSeance % 60 %}
+                    <h3> {{ heures }}h{% if minutes > 0 %}{{ '%02d' | format(minutes) }}{% endif %} par séance</h3>
+                {% else %}
+                    <h3> Temps adaptable </h3>
+                {% endif %}
+                <!-- Prix de chaque séance --> 
+                {%  if prestation.prixSeance is not null %}
+                    <h2> {{ prestation.prixSeance }}€ la séance </h2>
+                {% else %}
+                    <h2> Prix adaptable </h2>
+                {% endif %}
+                <!-- Ajouter des boutons Modifier et Supprimer -->
+                <div class="boutonsOperations">
+                    <form action="{{ path('app_admin_prestation_modification', {'id': prestation.id}) }}" method="POST">
+                        <!-- Cet input sert simplement à récupérer l'id de la prestation pour
+                        l'envoyer vers le contrôleur de manière explicite -->
+                        <input type="hidden" name="id" value="{{ prestation.id }}">
+                        <button class="boutonModif"> Modifier </button>
+                    </form>
+                    <form action="{{ path('app_admin_prestation_suppression') }}" method="POST">
+                        <!-- Cet input sert simplement à récupérer l'id de la prestation pour
+                        l'envoyer vers le contrôleur de manière explicite -->
+                        <input type="hidden" name="id" value="{{ prestation.id }}">
+                        <button class="boutonSuppr"> Supprimer </button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}
