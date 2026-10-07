@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une demande{% endblock %}
+
+{% block body %}
+    <div class="creation-demande-page">
+        <nav class="navbar creation-navbar">
+            <a class="creation-logo" href="{{ path('app_accueil') }}">
+                <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
+            </a>
+            <div class="creation-navigation">
+                <a href="{{ path('app_accueil') }}">Accueil</a>
+                <a href="{{ path('app_prestation') }}">Prestations</a>
+                <a class="is-active" href="{{ path('app_ajouter_demande') }}">Créer une demande</a>
+                <a href="{{ path('app_gerer_demande') }}">Mes demandes</a>
+            </div>
+            <div class="creation-actions">
+                <a href="{{ path('app_login') }}">Connexion</a>
+                <a class="creation-register" href="{{ path('app_inscription') }}">S'inscrire</a>
+            </div>
+        </nav>
+
+        <main class="creation-content">
+            <h1>Créer une nouvelle demande</h1>
+
+            {% for message in app.flashes('error') %}
+                <p class="creation-alert creation-alert-error">{{ message }}</p>
+            {% endfor %}
+
+            <form class="creation-form" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('ajouter_demande') }}">
+                <div class="creation-column">
+                    <section class="creation-section">
+                        <h2>1. Choix de la prestation</h2>
+                        <label for="prestation">Sélectionnez une prestation <span>*</span></label>
+                        <select id="prestation" name="prestation" required>
+                            <option value="">Choisir une prestation</option>
+                            {% for prestation in prestations %}
+                                <option value="{{ prestation.id }}">{{ prestation.libelle }}</option>
+                            {% endfor %}
+                        </select>
+                    </section>
+
+                    <section class="creation-section">
+                        <h2>2. Description du besoin</h2>
+                        <label for="description">Détaillez votre demande <span>*</span></label>
+                        <textarea id="description" name="description" placeholder="Décrivez le comportement de votre chien, vos objectifs, ou toute autre information utile..." required></textarea>
+                    </section>
+
+                    <section class="creation-section creation-date-section">
+                        <label for="date">Date souhaitée <span>*</span></label>
+                        <input id="date" type="date" name="date" min="{{ 'now'|date('Y-m-d') }}" required>
+                    </section>
+                </div>
+
+                <div class="creation-column">
+                    <section class="creation-section">
+                        <h2>3. Informations sur votre chien</h2>
+                        <label for="nom">Nom du chien <span>*</span></label>
+                        <input id="nom" type="text" name="nom" placeholder="Rex" required>
+
+                        <label for="race">Race du chien <span>*</span></label>
+                        <input id="race" type="text" name="race" placeholder="Yorkshire" required>
+
+                        <label for="age">Âge (ans) <span>*</span></label>
+                        <input id="age" type="number" name="age" min="0" max="100" placeholder="1" required>
+
+                        <label>Genre <span>*</span></label>
+                        <div class="creation-radio-group">
+                            <label><input type="radio" name="genre" value="Mâle" required> Mâle</label>
+                            <label><input type="radio" name="genre" value="Femelle"> Femelle</label>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="creation-buttons">
+                    <button type="submit" class="creation-submit">Envoyer ma demande</button>
+                    <a href="{{ path('app_gerer_demande') }}" class="creation-cancel">Annuler</a>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+{% endblock %}
