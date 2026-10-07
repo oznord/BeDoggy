@@ -823,3 +823,19 @@
     text-align: center;
     width: 150px;
 }
+
+.messageOperation {
+    grid-column: 2;
+    grid-row: 2;
+    color: red;
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+.messageOperation.erreur {
+    color: red;
+}
+
+.messageOperation.suppression {
+    color: green;
+}

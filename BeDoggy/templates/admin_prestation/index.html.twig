@@ -77,6 +77,9 @@
     </form>
     <div class="adminModifSupprPresta">
         <h2> Modifier / Supprimer une prestation </h2>
+        {% if messageOperation is defined and messageOperation is not null %}
+            <p class="messageOperation {{ typeMessageOperation }}"> {{ messageOperation }}</p>
+        {% endif %}
     </div>
     <div class="affichagePrestation">
         {% for prestation in prestations %}
@@ -107,7 +110,10 @@
                 <!-- Ajouter des boutons Modifier et Supprimer -->
                 <div class="boutonsOperations">
                     <button class="boutonModif"> Modifier </button>
-                    <form action="{{ path('app_admin_prestation_suppression') }}" method: "POST">
+                    <form action="{{ path('app_admin_prestation_suppression') }}" method="POST">
+                        <!-- Cet input sert simplement à récupérer l'id de la prestation pour
+                        l'envoyer vers le contrôleur de manière explicite -->
+                        <input type="hidden" name="id" value="{{ prestation.id }}">
                         <button class="boutonSuppr"> Supprimer </button>
                     </form>
                 </div>
