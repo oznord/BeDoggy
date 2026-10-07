@@ -847,24 +847,112 @@
     padding-bottom: 50px;
     height: auto;
     background-color: #FFFEED;
+    font-family: "arial";
 
     display: grid;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: repeat(2, auto);
 
     align-items:center;
-    justify-items: center;
+}
+
+.backgroundModifPrestation h2 {
+    grid-column: 2;
+    grid-row: 1;
+    
+    font-size: 44px;
+    font-weight: bold;
+    color: #003B07;
+
+    justify-self: left;
 }
 
 .backgroundModifPrestation .prestationAmodifier {
+    grid-column: 2;
+    grid-row: 2;
+
     padding: 20px;
     background-color: #FFE9BF;
     border-radius: 30px;
-    width: 90%;
+    width: 1500px;
     height: auto;
-    margin: 40px;
 
     font-family: "arial";
     
     display: grid;
-    grid-template-rows: repeat(3, auto) repeat(2, 30px) repeat(2, auto);
+    grid-template-rows: repeat(12, auto);
+}
+
+.prestationAmodifier .image {
+    grid-row: 1;
+
+    font-size: 34px;
+    justify-self: center;
+}
+
+.choixImageModif {
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    align-items: center;
+    justify-items: center;
+
+    gap: 30px;
+}
+
+.choixImageModif .imageDuChoix {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+
+    align-items: center;
+    gap: 15px;
+}
+
+.choixImageModif .imageDuChoix input {
+    grid-column: 1;
+    align-self: left;
+    
+    transform: scale(2);
+}
+
+.choixImageModif .imageDuChoix img {
+    grid-column: 2;
+    width: 280px;
+    height: 180px;
+    border-radius: 20px;
+}
+
+.prestationAmodifier .libelle {
+    grid-row: 3;
+
+    font-size: 34px;
+    justify-self: center;
+}
+
+.prestationAmodifier input {
+    grid-row: 4;
+
+    height: 20px;
+    border-radius: 30px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.prestationAmodifier .description {
+    grid-row: 5;
+
+    font-size: 34px;
+    justify-self: center;
+}
+
+.prestationAmodifier .longueTextbox {
+    resize: none;
+    height: 200px;
+    border-radius: 30px;
+    padding: 20px;
+    font-family: "arial";
+    font-size: 30px;
+    margin-bottom: 60px;
 }
