@@ -2,67 +2,74 @@
 
 {% block title %} Mes Demandes {% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/styles/styles.css') }}">
-{% endblock %}
-
 {% block body %}
-
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
-            <p> BeDoggy </p>
-        </div>
-        <div class="nav-center">
-            <a href="{{ path('app_accueil') }}"> Accueil </a>
-            <a href="{{ path('app_prestation') }}"> Prestations </a>
-
-            <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
-        </div>
-
-        <div class="nav-right">
-            <form action="{{ path('app_inscription') }}">
-                <button>
-                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
-                    S'inscrire
-                </button>
-            </form>
-        </div>
-    </nav>
-
-
-<div class="GererDemande">
-    <h1> Mes Demandes </h1>
-    <p> Suivez l'historique et l'avancement de vos demandes. </p>
-
-        
-
-        <div class="gererDemandeRight">
-
-
-            <button class="creerDemande">
-                <a href=""> + Nouvelle demande </a> 
-            </button>
-
-        </div>
-
-
-        {% for demande in demandes %}
-            <div class="demande">
-                <div class="demandeLeft">
-                    <span> {%if demande.statut.id == '1' %} En attente {% elseif demande.statut.id == '2' %} Confirmée {% elseif demande.statut.id == '3' %} En cours {% elseif demande.statut.id == '4' %} Terminée {% else %} Refusée {% endif %} </span>
-                    <h2>  </h2>
-                    <p> {{ demande.description }} </p>
-                </div>
-                <div class="demandeRight">
-                    
-                    <p> Date de création : {{ demande.date|date('d/m/Y') }} </p>
-                </div>
+    <div class="demandes-page">
+        <nav class="navbar demandes-navbar">
+            <a class="demandes-logo" href="{{ path('app_accueil') }}">
+                <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="BeDoggy">
+            </a>
+            <div class="demandes-navigation">
+                <a class="is-active" href="{{ path('app_gerer_demande') }}">Mes demandes</a>
+                <a href="{{ path('app_prestation') }}">Prestations</a>
             </div>
-            {% else %}
-            <p>Vous n'avez pas de demandes en cours.</p>
-            {% endfor %}
+            <div class="demandes-actions" aria-label="Actions utilisateur">
+                <span class="demandes-user-icon" aria-hidden="true">{{ app.user ? app.user.prenom|first : 'U' }}</span>
+                <a href="{{ path('app_accueil') }}" class="demandes-logout" aria-label="Retour à l'accueil">↪</a>
+            </div>
+        </nav>
 
-</div>
+        <main class="demandes-content">
+            <header class="demandes-header">
+                <div>
+                    <h1>Mes demandes</h1>
+                    <p>Suivez l'historique et l'avancement de vos demandes.</p>
+                </div>
+                <a class="nouvelle-demande" href="{{ path('app_prestation') }}">
+                    <span aria-hidden="true">+</span> Nouvelle demande
+                </a>
+            </header>
+
+            {% if demandes is not empty %}
+                <section class="demandes-grid" aria-label="Liste de vos demandes">
+                    {% for demande in demandes %}
+                        {% set prestation = demande.correspondre|first %}
+                        {% set statut = demande.statut ? demande.statut.libelle|default('')|lower : '' %}
+                        {% set statutClasse = statut|replace({' ': '-'}) %}
+                        <article class="demande-card">
+                            <div class="demande-card-image">
+                                {% if prestation and prestation.image %}
+                                    <img src="{{ asset('assets/images/prestations/' ~ prestation.image) }}" alt="">
+                                {% else %}
+                                    <img src="{{ asset('assets/images/fondChien.png') }}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="demande-card-body">
+                                <div class="demande-card-meta">
+                                    <span class="demande-statut statut-{{ statutClasse }}">
+                                        {{ demande.statut ? demande.statut.libelle : 'Statut inconnu' }}
+                                    </span>
+                                    <span class="demande-reference">REQ-{{ '%03d'|format(demande.id) }}</span>
+                                </div>
+                                <h2>{{ prestation ? prestation.libelle : 'Demande de prestation' }}</h2>
+                                {% if demande.description %}
+                                    <p class="demande-description">{{ demande.description }}</p>
+                                {% endif %}
+                                <p class="demande-date">
+                                    <span aria-hidden="true">◫</span>
+                                    {{ demande.date ? demande.date|date('d F Y') : 'Date non renseignée' }}
+                                </p>
+                                <div class="demande-card-footer">
+                                    <span>Demande envoyée</span>
+                                    <a href="{{ path('app_gerer_demande') }}">Voir les détails <span aria-hidden="true">›</span></a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </section>
+            {% else %}
+                <p class="demandes-empty">Vous n'avez pas encore de demande.</p>
+            {% endif %}
+        </main>
+    </div>
 
 {% endblock %}
