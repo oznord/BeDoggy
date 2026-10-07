@@ -109,7 +109,12 @@
                 {% endif %}
                 <!-- Ajouter des boutons Modifier et Supprimer -->
                 <div class="boutonsOperations">
-                    <button class="boutonModif"> Modifier </button>
+                    <form action="{{ path('app_admin_prestation_modification', {'id': prestation.id}) }}" method="POST">
+                        <!-- Cet input sert simplement à récupérer l'id de la prestation pour
+                        l'envoyer vers le contrôleur de manière explicite -->
+                        <input type="hidden" name="id" value="{{ prestation.id }}">
+                        <button class="boutonModif"> Modifier </button>
+                    </form>
                     <form action="{{ path('app_admin_prestation_suppression') }}" method="POST">
                         <!-- Cet input sert simplement à récupérer l'id de la prestation pour
                         l'envoyer vers le contrôleur de manière explicite -->

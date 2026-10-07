@@ -839,3 +839,32 @@
 .messageOperation.suppression {
     color: green;
 }
+
+/* ADMIN PRESTATION - Modification d'une prestation */
+
+.backgroundModifPrestation {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: auto;
+    background-color: #FFFEED;
+
+    display: grid;
+    grid-template-rows: auto;
+
+    align-items:center;
+    justify-items: center;
+}
+
+.backgroundModifPrestation .prestationAmodifier {
+    padding: 20px;
+    background-color: #FFE9BF;
+    border-radius: 30px;
+    width: 90%;
+    height: auto;
+    margin: 40px;
+
+    font-family: "arial";
+    
+    display: grid;
+    grid-template-rows: repeat(3, auto) repeat(2, 30px) repeat(2, auto);
+}

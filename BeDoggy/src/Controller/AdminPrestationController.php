@@ -199,4 +199,37 @@ final class AdminPrestationController extends AbstractController
             'typeMessageOperation' => $typeMessage,
         ]); 
     }
+
+    #[Route('/admin/prestation/{id}/modification', name: 'app_admin_prestation_modification', methods: ['POST'])]
+    public function modificationPrestation(
+        int $id,
+        Request $request,
+        PrestationRepository $prestationRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        $prestation = $prestationRepository->find($id);
+
+        if ($prestation === null) {
+            // On récupère les données à afficher
+            $images = $this->getImages();
+            $prestations = $prestationRepository->findAll();
+            return $this->render('admin_prestation/index.html.twig', [
+                'messageOperation' => "Erreur lors de la recherche : Prestation introuvable.",
+                'images' => $images,
+                'prestations' => $prestations,
+                'typeMessageOperation' => "erreur"
+            ]);
+        }
+
+        // On récupère les données à afficher
+        $images = $this->getImages();
+        return $this->render('admin_prestation/modification.html.twig', [
+            'prestation' => $prestation,
+            'images' => $images
+        ]);
+
+    }
+
+    
 }

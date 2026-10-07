@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des prestations{% endblock %}
+
+{% block body %}
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
+            <p> BeDoggy </p>
+        </div>
+        <div class="nav-center">
+            <a href="{{ path('app_accueil') }}"> Accueil </a>
+            <a href="{{ path('app_prestation') }}"> Prestations </a>
+            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
+
+            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
+            <a href=""> Créer une demande </a>
+            <a href=""> Mes demandes </a>
+            <a href=""> Connexion </a>
+            -->
+        </div>
+        <div class="nav-right">
+            <form action="{{ path('app_inscription') }}">
+                <button>
+                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
+                    S'inscrire
+                </button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Haut de page -->
+    <div class="presentationPrestation">
+        <div class="layoutHautPagePresta">
+            <h2> Prestations </h2>
+            <div class="traitBlanc"></div>
+            <h1> Modification d'un prestation </h1>
+        </div>
+    </div>
+
+    <!-- Modification des informations de la prestation -->
+    <div class="backgroundModifPrestation">
+        <div class="prestationAmodifier">
+            <div class="choixImage">
+                {% for image in images %}
+                    <label class="imageDuChoix">
+                        <input type="radio" name="image" value="{{ image }}">
+                        <img src="{{ asset('assets/images/prestations/' ~ image) }}">
+                    </label>
+                {% endfor %}
+            </div> 
+        </div>
+    </div>
+
+    <!-- ANCIEN CODE -->
+    <div class="affichagePrestation">
+        <div class="eachPresta">
+            <img src="{{ asset('assets/images/prestations/' ~ prestation.image) }}">
+            <h1> {{ prestation.libelle }} </h1>
+            <p> {{ prestation.description }} </p>
+            <!-- Nombre de séances -->
+            {% if prestation.nbSeance is not null %}
+                <h3> {{ prestation.nbSeance }} séance(s) </h3>
+            {% else %}
+                <h3> Nombre de séances adaptable </h3>
+            {% endif %}
+            <!-- Temps de chaque séance -->
+            {%  if prestation.tempsSeance is not null %}
+                {% set heures = prestation.tempsSeance // 60 %}
+                {% set minutes = prestation.tempsSeance % 60 %}
+                <h3> {{ heures }}h{% if minutes > 0 %}{{ '%02d' | format(minutes) }}{% endif %} par séance</h3>
+            {% else %}
+                <h3> Temps adaptable </h3>
+            {% endif %}
+            <!-- Prix de chaque séance --> 
+            {%  if prestation.prixSeance is not null %}
+                <h2> {{ prestation.prixSeance }}€ la séance </h2>
+            {% else %}
+                <h2> Prix adaptable </h2>
+            {% endif %}
+        </div>
+    </div>
+    
+
+{% endblock %}
