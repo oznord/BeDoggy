@@ -867,7 +867,7 @@
     justify-self: left;
 }
 
-.backgroundModifPrestation .prestationAmodifier {
+.backgroundModifPrestation .prestationAmodifier  {
     grid-column: 2;
     grid-row: 2;
 
@@ -936,6 +936,7 @@
 
     height: 20px;
     border-radius: 30px;
+    text-align: center;
     padding: 20px;
     font-size: 30px;
 }
@@ -956,7 +957,6 @@
     padding: 20px;
     font-family: "arial";
     font-size: 30px;
-    margin-bottom: 60px;
 }
 
 .prestationAmodifier .nbSeance {

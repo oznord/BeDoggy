@@ -39,36 +39,38 @@
     </div>
 
     <!-- Modification des informations de la prestation -->
-    <div class="backgroundModifPrestation">
-        <h2> Modifier une prestation </h2>
-        <div class="prestationAmodifier">
-            <h3 class="image"> IMAGE </h3>
-            <div class="choixImageModif">
-                {% for image in images %}
-                    <label class="imageDuChoix">
-                        <input type="radio" name="image" value="{{ image }}">
-                        <img src="{{ asset('assets/images/prestations/' ~ image) }}">
-                    </label>
-                {% endfor %}
+    <form action="" method="POST">
+        <div class="backgroundModifPrestation">
+            <h2> Modifier une prestation </h2>
+            <div class="prestationAmodifier">
+                <h3 class="image"> IMAGE </h3>
+                <div class="choixImageModif">
+                    {% for image in images %}
+                        <label class="imageDuChoix">
+                            <input type="radio" name="image" value="{{ image }}">
+                            <img src="{{ asset('assets/images/prestations/' ~ image) }}">
+                        </label>
+                    {% endfor %}
+                </div>
+
+                <h3 class="libelle"> LIBELLE <span class="asterisque">*</span> </h3>
+                <input class="inputLibelle" type="text" name="libelle" value="{{ prestation.libelle }}">
+
+                <h3 class="description"> DESCRIPTION <span class="asterisque">*</span> </h3>
+                <textarea class="longueTextbox" type="text" name="description">{{ prestation.description }}</textarea>
+
+                <h3 class="nbSeance"> NOMBRE SEANCES </h3>
+                <input class="inputNbSeance" type="number" name="nbSeance" value="{{ prestation.nbSeance }}">
+
+                <h3 class="tempsSeance"> TEMPS SEANCE </h3>
+                <input class="inputTempsSeance" type="number" name="tempsSeance" value="{{ prestation.tempsSeance }}">
+
+                <h3 class="prixSeance"> PRIX SEANCE </h3>
+                <input class="inputPrixSeance" type="number" name="prixSeance" value="{{ prestation.prixSeance }}">
+
+                <button> Valider les modifications </button>
             </div>
-
-            <h3 class="libelle"> LIBELLE <span class="asterisque">*</span> </h3>
-            <input class="inputLibelle" type="text" name="libelle" value="{{ prestation.libelle }}">
-
-            <h3 class="description"> DESCRIPTION <span class="asterisque">*</span> </h3>
-            <textarea class="longueTextbox" type="text" name="description">{{ prestation.description }}</textarea>
-
-            <h3 class="nbSeance"> NOMBRE SEANCES </h3>
-            <input class="inputNbSeance" type="number" name="nbSeance" value="{{ prestation.nbSeance }}">
-
-            <h3 class="tempsSeance"> TEMPS SEANCE </h3>
-            <input class="inputTempsSeance" type="number" name="tempsSeance" value="{{ prestation.tempsSeance }}">
-
-            <h3 class="prixSeance"> PRIX SEANCE </h3>
-            <input class="inputPrixSeance" type="number" name="prixSeance" value="{{ prestation.prixSeance }}">
-
-            <button> Valider les modifications </button>
         </div>
-    </div>
+    </form>
 
 {% endblock %}
