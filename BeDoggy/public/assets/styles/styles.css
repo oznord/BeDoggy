@@ -540,7 +540,7 @@
     font-family: "arial";
     
     display: grid;
-    grid-template-rows: repeat(3, auto) repeat(2, 30px) auto;
+    grid-template-rows: repeat(3, auto) repeat(2, 30px) repeat(2, auto);
 }
 
 .affichagePrestation .eachPresta:nth-child(odd) {
@@ -783,4 +783,43 @@
     font-weight: bold;
     color: #003B07;
     margin-bottom: 0px;
+}
+
+.boutonsOperations {
+    grid-row: 7;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    place-items: center;
+
+    gap: 10px;
+}
+
+.boutonsOperations .boutonModif {
+    grid-column: 1;
+
+    background: linear-gradient(to right, #056500, #08A100);
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    width: 150px;
+}
+
+.boutonsOperations .boutonSuppr {
+    grid-column: 2;
+
+    background: linear-gradient(to right, #B70F00, #FF4848);
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    width: 150px;
 }

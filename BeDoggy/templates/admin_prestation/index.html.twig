@@ -104,6 +104,13 @@
                 {% else %}
                     <h2> Prix adaptable </h2>
                 {% endif %}
+                <!-- Ajouter des boutons Modifier et Supprimer -->
+                <div class="boutonsOperations">
+                    <button class="boutonModif"> Modifier </button>
+                    <form action="{{ path('app_admin_prestation_suppression') }}" method: "POST">
+                        <button class="boutonSuppr"> Supprimer </button>
+                    </form>
+                </div>
             </div>
         {% endfor %}
     </div>
