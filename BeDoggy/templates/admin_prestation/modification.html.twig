@@ -39,9 +39,14 @@
     </div>
 
     <!-- Modification des informations de la prestation -->
-    <form action="" method="POST">
+    <form action=" {{ path('app_admin_prestation_modification_validModif', {'id': prestation.id}) }}" method="POST">
+        <!-- Récupération de l'id de la prestation pour faire les modifs après -->
+        <input type="hidden" name="id" value="{{ prestation.id }}">
         <div class="backgroundModifPrestation">
             <h2> Modifier une prestation </h2>
+            {% if message is defined and message is not null %}
+                <p class="message {{ typeMessage }}"> {{ message }}</p>
+            {% endif %}
             <div class="prestationAmodifier">
                 <h3 class="image"> IMAGE </h3>
                 <div class="choixImageModif">

@@ -851,7 +851,7 @@
 
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
 
     align-items:center;
 }
@@ -867,9 +867,26 @@
     justify-self: left;
 }
 
-.backgroundModifPrestation .prestationAmodifier  {
+.message {
     grid-column: 2;
     grid-row: 2;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.message.erreur {
+    color: red;
+}
+
+.message.modification {
+    color: green;
+}
+
+
+.backgroundModifPrestation .prestationAmodifier {
+    grid-column: 2;
+    grid-row: 3;
 
     padding: 20px;
     background-color: #FFE9BF;

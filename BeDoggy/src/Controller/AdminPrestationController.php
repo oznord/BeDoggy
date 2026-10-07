@@ -231,5 +231,117 @@ final class AdminPrestationController extends AbstractController
 
     }
 
+    #[Route('/admin/prestation/{id}/modification/validModif', name: 'app_admin_prestation_modification_validModif', methods: ['POST'])]
+    public function modifierPrestation (
+        int $id,
+        Request $request,
+        PrestationRepository $prestationRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        //On récupère la prestation que l'on souhaite modifier
+        $prestation = $prestationRepository->find($id);
+
+        //Si la prestation est introuvable (normalement c'est pas le cas), on retourne sur la page avec toutes les prestas
+        if ($prestation === null) {
+            $images = $this->getImages();
+            $prestations = $prestationRepository->findAll();
+            return $this->render('admin_prestation/index.html.twig', [
+                'messageOperation' => "Erreur lors de la modfication : Prestation introuvable.",
+                'images' => $images,
+                'prestations' => $prestations,
+                'typeMessageOperation' => "erreur"
+            ]);
+        }
+
+        //Récupération des informations du formulaire
+        $libelle = trim($request->request->get('libelle', ''));             //Si ça n'existe pas : valeur par défaut : ''
+        $description = trim($request->request->get('description', ''));
+        $nbSeances = $request->request->get('nbSeance');
+        $tempsSeance = $request->request->get('tempsSeance');
+        $prixSeance = $request->request->get('prixSeance');
+        $image = $request->request->get('image');
+
+        //Verif libelle
+        if ($libelle === '') {
+            $message = "Erreur : Le libelle est obligatoire.";
+            $typeMessage = 'erreur';
+        }
+        //Verif description
+        if ($description === '') {
+            $message = "Erreur : La description est obligatoire.";
+            $typeMessage = 'erreur';
+        }
+        //Verif nbSeances
+        if ($nbSeances !== null && $nbSeances !== '') {
+            if (!is_numeric($nbSeances) || $nbSeances <= 0) {
+                $message = "Erreur : Nombre de séances invalide.";
+                $typeMessage = "erreur";
+            }
+            else {
+                $nbSeances = (int) $nbSeances;
+            }
+        }
+        else {
+            $nbSeances = null;
+        }
+        //Verif tempsSeance
+        if ($tempsSeance !== null && $tempsSeance !== '') {
+            if (!is_numeric($tempsSeance) || $tempsSeance <= 0) {
+                $message = "Erreur : Temps de séance invalide.";
+                $typeMessage = "erreur";
+            }
+            else {
+                $tempsSeance = (int) $tempsSeance;
+            }
+        }
+        else {
+            $tempsSeance = null;
+        }
+        //Verif prix
+        if ($prixSeance !== null && $prixSeance !== '') {
+            if (!preg_match("/"."^\d+([.,]\d{1,2})?$/", $prixSeance) || $prixSeance <= 0) {
+                $message = "Erreur : Prix invalide.";
+                $typeMessage = "erreur";
+            }
+            else {
+                $prixSeance = (float) str_replace(',', '.', $prixSeance);
+            }
+        }
+        else {
+            $prixSeance = null;
+        }
+
+        //S'il n'y a aucune erreur
+        if (!isset($message) || $message === null) {
+            $prestation->setLibelle($libelle);
+            $prestation->setDescription($description);
+            $prestation->setNbSeance($nbSeances);
+            $prestation->setTempsSeance($tempsSeance);
+            $prestation->setPrixSeance($prixSeance);
+            $prestation->setImage($image);
+
+            //Verif image
+            if ($image !== null && $image !== '') {
+                $prestation->setImage($image);
+            }
+
+            $entityManager->flush();
+
+            $message = "La prestation a bien été modifiée.";
+            $typeMessage = "modification";
+        }
+
+        $images = $this->getImages();
+        $prestations = $prestationRepository->findAll();
+
+        return $this->render('admin_prestation/modification.html.twig', [
+            'prestation' => $prestation,
+            'images' => $images,
+            'message' => $message,
+            'typeMessage' => $typeMessage
+        ]);
+
+    }
     
 }
