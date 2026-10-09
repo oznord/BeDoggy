@@ -10,17 +10,16 @@
         </div>
         <div class="nav-center">
             <a href="{{ path('app_accueil') }}"> Accueil </a>
-            <a href="{{ path('app_prestation') }}"> Prestations </a>
-
-            <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
+            <!-- Si l'utilisateur n'est pas connecté ou est un client -->
             {% if app.user and app.user.role and app.user.role.id == 1 %}
-                <a href="{{ path('app_traiter_demande') }}">Administration</a>
+                <a href="{{ path('app_admin_prestation') }}"> Prestations </a>
+                <a href="{{ path('app_traiter_demande') }}"> Administration </a>
+            <!-- Si l'utilisateur est un administrateur -->
+            {% else %}
+                <a href="{{ path('app_prestation') }}"> Prestations </a>
+                <a href="{{ path('app_ajouter_demande') }}"> Créer une demande </a>
+                <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
             {% endif %}
-
-            <a href="{{ path('app_ajouter_demande') }}"> Créer une demande </a>
-
-            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
-
         </div>
         <div class="nav-right">
             {% if app.user %}
