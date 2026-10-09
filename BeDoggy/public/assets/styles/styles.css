@@ -135,9 +135,11 @@
 .boutonsAccueil {
     grid-column: 2 / 4;
 
+    font-family: "arial";
+
     display: grid;
     grid-template-columns: 3fr 2fr;
-    gap: 20px;
+    gap: 60px;
 }
 
 .boutonsAccueil .bouton1 {
@@ -152,6 +154,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr) 9fr 1fr;
     align-items:center;
+    justify-items: center;
+    
+    gap: 10px;
 } 
 
 
@@ -583,7 +588,8 @@
     font-size: 32px;
 }
 
-
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 
 
@@ -620,8 +626,6 @@
     width: 24px;
     height: auto;
 }
-
-
 
 .bouton2 {
 

@@ -11,18 +11,16 @@
         <div class="nav-center">
             <a href="{{ path('app_accueil') }}"> Accueil </a>
             <a href="{{ path('app_prestation') }}"> Prestations </a>
-            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
 
             <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
             {% if app.user and app.user.role and app.user.role.id == 1 %}
                 <a href="{{ path('app_traiter_demande') }}">Administration</a>
             {% endif %}
 
-            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
-            <a href=""> Créer une demande </a>
-            
-            <a href=""> Connexion </a>
-            -->
+            <a href="{{ path('app_ajouter_demande') }}"> Créer une demande </a>
+
+            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
+
         </div>
         <div class="nav-right">
             {% if app.user %}
