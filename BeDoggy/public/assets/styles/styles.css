@@ -457,7 +457,8 @@
 
 /* ACCUEIL - Infos Prestations */
 .introPresentationPrestas {
-    height: 400px;
+    height: auto;
+    margin-bottom: 50px;
 
     display: grid;
     grid-template-columns: 2fr 3fr;
@@ -569,6 +570,24 @@
 
 .accueilPrestas .chaquePrestaAccueil  h3 {
     grid-row: 2;
+}
+
+@media (max-width: 1000px) {
+    .accueilPrestas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chaquePrestaAccueil {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 760px) {
+    .accueilPrestas {
+        grid-template-columns: 1fr;
+    }
+
+    
 }
 
 /**********************************************************************************************************
