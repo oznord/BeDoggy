@@ -294,54 +294,7 @@
     gap: 10px;
 }
 
-.cercle1 {
-    grid-column: 1;
-    grid-row: 2;
-    width: 70px;
-    height: 70px;
-    background-color: #DAF3DD;
-    border-radius: 50%;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-
-    align-items: center;
-    justify-items: center;
-    
-}
-.cercle2 {
-    grid-column: 2;
-    grid-row: 2;
-    width: 70px;
-    height: 70px;
-    background-color: #DAF3DD;
-    border-radius: 50%;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-
-    align-items: center;
-    justify-items: center;
-}
-.cercle3 {
-    grid-column: 3;
-    grid-row: 2;
-    width: 70px;
-    height: 70px;
-    background-color: #DAF3DD;
-    border-radius: 50%;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-
-    align-items: center;
-    justify-items: center;
-}
-.cercle4 {
-    grid-column: 4;
+.cercle {
     grid-row: 2;
     width: 70px;
     height: 70px;
@@ -356,69 +309,46 @@
     justify-items: center;
 }
 
-.cercle1 img {
-    width: 50px;
-}
-.cercle2 img {
-    width: 60px;
-}
+.cercle1 { grid-column: 1; }
+.cercle2 { grid-column: 2; }
+.cercle3 { grid-column: 3; }
+.cercle4 { grid-column: 4; }
+
+.cercle1 img { width: 50px; }
+.cercle2 img { width: 60px; }
 .cercle3 img {
     width: 60px;
     padding-bottom: 5px;
 }
-.cercle4 img {
-    width: 70px;
-}
+.cercle4 img { width: 70px; }
 
-.miseConfiance .titre1 {
-    grid-column: 1;
-    grid-row: 3;
-    color: #096A00;
-}
-.miseConfiance .titre2 {
-    grid-column: 2;
-    grid-row: 3;
-    color: #096A00;
-}
-.miseConfiance .titre3 {
-    grid-column: 3;
-    grid-row: 3;
-    color: #096A00;
-}
+.miseConfiance .titre1,
+.miseConfiance .titre2,
+.miseConfiance .titre3,
 .miseConfiance .titre4 {
-    grid-column: 4;
     grid-row: 3;
     color: #096A00;
 }
 
-.miseConfiance .p1 {
-    grid-column: 1;
-    grid-row: 4;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: #559B4C;
-}
-.miseConfiance .p2 {
-    grid-column: 2;
-    grid-row: 4;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: #559B4C;
-}
-.miseConfiance .p3 {
-    grid-column: 3;
-    grid-row: 4;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: #559B4C;
-}
+.miseConfiance .titre1 { grid-column: 1; }
+.miseConfiance .titre2 { grid-column: 2; }
+.miseConfiance .titre3 { grid-column: 3; }
+.miseConfiance .titre4 { grid-column: 4; }
+
+.miseConfiance .p1,
+.miseConfiance .p2,
+.miseConfiance .p3,
 .miseConfiance .p4 {
-    grid-column: 4;
     grid-row: 4;
     padding-left: 5px;
     padding-right: 5px;
     color: #559B4C;
 }
+
+.miseConfiance .p1 { grid-column: 1; }
+.miseConfiance .p2 { grid-column: 2; }
+.miseConfiance .p3 { grid-column: 3; }
+.miseConfiance .p4 { grid-column: 4; }
 
 /* ACCUEIL - Infos Prestations */
 .introPresentationPrestas {
