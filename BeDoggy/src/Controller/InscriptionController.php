@@ -81,7 +81,7 @@ class InscriptionController extends AbstractController
 
             $role = $entityManager
                 ->getRepository(Role::class)
-                ->findOneBy(['libelle' => 'Utilisateur']);
+                ->findOneBy(['id' => 2]);
 
             if ($role !== null) {
                 $utilisateur->setRole($role);
