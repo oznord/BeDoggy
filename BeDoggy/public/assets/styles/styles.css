@@ -282,7 +282,7 @@
     font-family: "arial";
     font-size: 13px;
     text-align: center;
-    height: 300px;
+    height: auto;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -349,6 +349,111 @@
 .miseConfiance .p2 { grid-column: 2; }
 .miseConfiance .p3 { grid-column: 3; }
 .miseConfiance .p4 { grid-column: 4; }
+
+@media (max-width: 900px) {
+    .miseConfiance {
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+
+        gap: 20px;
+    }
+
+    .miseConfiance .cercle1,
+    .miseConfiance .titre1,
+    .miseConfiance .p1,
+    .miseConfiance .cercle3,
+    .miseConfiance .titre3,
+    .miseConfiance .p3 {
+        grid-column: 1;
+    }
+
+    .miseConfiance .cercle2,
+    .miseConfiance .titre2,
+    .miseConfiance .p2,
+    .miseConfiance .cercle4,
+    .miseConfiance .titre4,
+    .miseConfiance .p4 {
+        grid-column: 2;
+    }
+
+    .miseConfiance .cercle1,
+    .miseConfiance .cercle2 {
+        grid-row: 1;
+    }
+
+    .miseConfiance .titre1,
+    .miseConfiance .titre2 {
+        grid-row: 2;
+    }
+
+    .miseConfiance .p1,
+    .miseConfiance .p2 {
+        grid-row: 3;
+    }
+
+    .miseConfiance .cercle3,
+    .miseConfiance .cercle4 {
+        grid-row: 4;
+    }
+
+    .miseConfiance .titre3,
+    .miseConfiance .titre4 {
+        grid-row: 5;
+    }
+
+    .miseConfiance .p3,
+    .miseConfiance .p4 {
+        grid-row: 6;
+    }
+}
+
+@media (max-width: 600px) {
+    .miseConfiance {
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .miseConfiance .cercle1,
+    .miseConfiance .titre1,
+    .miseConfiance .p1,
+    .miseConfiance .cercle2,
+    .miseConfiance .titre2,
+    .miseConfiance .p2,
+    .miseConfiance .cercle3,
+    .miseConfiance .titre3,
+    .miseConfiance .p3,
+    .miseConfiance .cercle4,
+    .miseConfiance .titre4,
+    .miseConfiance .p4 {
+        grid-column: 1;
+    }
+
+    /* Premier groupe */
+    .miseConfiance .cercle1 { grid-row: 1; }
+    .miseConfiance .titre1  { grid-row: 2; }
+    .miseConfiance .p1      { grid-row: 3; }
+
+    /* Deuxième groupe */
+    .miseConfiance .cercle2 { grid-row: 4; }
+    .miseConfiance .titre2  { grid-row: 5; }
+    .miseConfiance .p2      { grid-row: 6; }
+
+    /* Troisième groupe */
+    .miseConfiance .cercle3 { grid-row: 7; }
+    .miseConfiance .titre3  { grid-row: 8; }
+    .miseConfiance .p3      { grid-row: 9; }
+
+    /* Quatrième groupe */
+    .miseConfiance .cercle4 { grid-row: 10; }
+    .miseConfiance .titre4  { grid-row: 11; }
+    .miseConfiance .p4      { grid-row: 12; }
+}
 
 /* ACCUEIL - Infos Prestations */
 .introPresentationPrestas {
