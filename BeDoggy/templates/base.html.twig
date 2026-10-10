@@ -20,6 +20,42 @@
         {% endif %}
     </head>
     <body>
+        {% block navbar %}
+            {% if app.request.attributes.get('_route')
+                not in ['app_inscription', 'app_login'] %}
+                
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
+                        <p> BeDoggy </p>
+                    </div>
+                    <div class="nav-center">
+                        <a href="{{ path('app_accueil') }}"> Accueil </a>
+                        <!-- Si l'utilisateur n'est pas connecté ou est un client -->
+                        {% if app.user and app.user.role and app.user.role.id == 1 %}
+                            <a href="{{ path('app_admin_prestation') }}"> Prestations </a>
+                            <a href="{{ path('app_traiter_demande') }}"> Administration </a>
+                        <!-- Si l'utilisateur est un administrateur -->
+                        {% else %}
+                            <a href="{{ path('app_prestation') }}"> Prestations </a>
+                            <a href="{{ path('app_ajouter_demande') }}"> Créer une demande </a>
+                            <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
+                        {% endif %}
+                    </div>
+                    <div class="nav-right">
+                        {% if app.user %}
+                            <a class="nav-auth-button nav-logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
+                        {% else %}
+                            <a class="nav-auth-button nav-login-button" href="{{ path('app_login') }}">Se connecter</a>
+                            <a class="nav-auth-button nav-register-button" href="{{ path('app_inscription') }}">S'inscrire</a>
+                        {% endif %}
+                    </div>
+                </nav>
+
+            {% endif %}
+        {% endblock %}
+
         {% block body %} {% endblock %}
+        
     </body>
 </html>

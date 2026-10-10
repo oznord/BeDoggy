@@ -3,31 +3,6 @@
 {% block title %}Gestion des prestations{% endblock %}
 
 {% block body %}
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
-            <p> BeDoggy </p>
-        </div>
-        <div class="nav-center">
-            <a href="{{ path('app_accueil') }}"> Accueil </a>
-            <a href="{{ path('app_prestation') }}"> Prestations </a>
-            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
-
-            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
-            <a href=""> Créer une demande </a>
-            <a href=""> Mes demandes </a>
-            <a href=""> Connexion </a>
-            -->
-        </div>
-        <div class="nav-right">
-            <form action="{{ path('app_inscription') }}">
-                <button>
-                    <img src="{{ asset('assets/images/icone_blanc_transparent.png')}}" alt="iconeBlanc">
-                    S'inscrire
-                </button>
-            </form>
-        </div>
-    </nav>
 
     <!-- Haut de page -->
     <div class="presentationPrestation">

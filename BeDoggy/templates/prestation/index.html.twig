@@ -3,37 +3,6 @@
 {% block title %} Prestations {% endblock %}
 
 {% block body %}
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="{{ asset('assets/images/Logo BeDoggy unique.png') }}" alt="logo">
-            <p> BeDoggy </p>
-        </div>
-        <div class="nav-center">
-            <a href="{{ path('app_accueil') }}"> Accueil </a>
-            <a href="{{ path('app_prestation') }}"> Prestations </a>
-            <a href="{{ path('app_admin_prestation') }}"> AdminPrestations </a>
-
-            <a href="{{ path('app_gerer_demande') }}"> Mes demandes </a>
-            {% if app.user and app.user.role and app.user.role.id == 1 %}
-                <a href="{{ path('app_traiter_demande') }}">Administration</a>
-            {% endif %}
-
-
-            <!-- ROUTES POUR APRES + RAJOUTER INFOS DANS PATH
-            <a href=""> Créer une demande </a>
-            
-            <a href=""> Connexion </a>
-            -->
-        </div>
-        <div class="nav-right">
-            {% if app.user %}
-                <a class="nav-auth-button nav-logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
-            {% else %}
-                <a class="nav-auth-button nav-login-button" href="{{ path('app_login') }}">Se connecter</a>
-                <a class="nav-auth-button nav-register-button" href="{{ path('app_inscription') }}">S'inscrire</a>
-            {% endif %}
-        </div>
-    </nav>
 
     <!-- Haut de page -->
     <div class="presentationPrestation">
