@@ -43,13 +43,9 @@ final class AdminPrestationController extends AbstractController
         $tempsSeance = $request->request->get('tempsSeance');
         $image = $request->request->get('image');
 
-        //Verif libelle
-        if ($libelle === "") {                                  //Ne doit pas être vide
-            $message = "Erreur lors de l'ajout : Le libellé est obligatoire.";
-        }
-        //Verif description
-        if ($description === "") {                              //Ne doit pas être vide
-            $message = "Erreur lors de l'ajout : La description est obligatoire.";
+        //Verif libelle et description
+        if ($libelle === "" || $description === "") {                                  //Ne doit pas être vide
+            $message = "Erreur lors de l'ajout : Le libellé et la description sont obligatoires.";
         }
         //Verif nbSeances
         if ($nbSeances !== null && $nbSeances !== '') {                              //Doit être un nombre entier
@@ -262,16 +258,12 @@ final class AdminPrestationController extends AbstractController
         $prixSeance = $request->request->get('prixSeance');
         $image = $request->request->get('image');
 
-        //Verif libelle
-        if ($libelle === '') {
-            $message = "Erreur : Le libelle est obligatoire.";
+        //Verif libelle et description
+        if ($libelle === '' || $description === '') {
+            $message = "Erreur : Le libelle et la description sont obligatoires.";
             $typeMessage = 'erreur';
         }
-        //Verif description
-        if ($description === '') {
-            $message = "Erreur : La description est obligatoire.";
-            $typeMessage = 'erreur';
-        }
+
         //Verif nbSeances
         if ($nbSeances !== null && $nbSeances !== '') {
             if (!is_numeric($nbSeances) || $nbSeances <= 0) {
