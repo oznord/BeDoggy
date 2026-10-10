@@ -1860,6 +1860,7 @@
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
     grid-template-rows: repeat(2, auto) 1fr;
+    min-width: 0;
 }
 
 .adminAjoutPresta h2 {
@@ -2032,6 +2033,51 @@
     width: 360px;
     height: 210px;
     border-radius: 20px;
+}
+
+@media (max-width: 1500px) {
+    .adminAjoutPresta {
+        grid-template-columns: 20px 8fr 20px;
+    }
+
+    .blocInfosAjout {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .leftColumnAdd {
+        grid-column: 1;
+        grid-row: 1;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .rightColumnAdd {
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+    }
+
+    .leftColumnAdd input,
+    .rightColumnAdd input,
+    .leftColumnAdd textarea {
+        width: 80%;
+        max-width: 80%;
+    }
+
+    .choixImage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 900px) {
+    .choixImage {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 }
 
 /* ADMIN PRESTATION - Modification / Suppression Prestations */
