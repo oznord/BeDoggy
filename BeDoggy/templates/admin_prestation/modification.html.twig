@@ -27,7 +27,7 @@
                 <div class="choixImageModif">
                     {% for image in images %}
                         <label class="imageDuChoix">
-                            <input type="radio" name="image" value="{{ image }}">
+                            <input type="radio" name="image" value="{{ image }}" {% if image == prestation.image %}checked{% endif %}>
                             <img src="{{ asset('assets/images/prestations/' ~ image) }}">
                         </label>
                     {% endfor %}

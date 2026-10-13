@@ -327,8 +327,8 @@ final class AdminPrestationController extends AbstractController
         $images = $this->getImages();
         $prestations = $prestationRepository->findAll();
 
-        return $this->render('admin_prestation/modification.html.twig', [
-            'prestation' => $prestation,
+        return $this->render('admin_prestation/index.html.twig', [
+            'prestations' => $prestations,
             'images' => $images,
             'message' => $message,
             'typeMessage' => $typeMessage
