@@ -18,6 +18,25 @@
                 </div>
             </header>
 
+            <form class="admin-filters" method="get">
+                <label class="admin-search-filter">
+                    Rechercher un client
+                    <input type="search" name="recherche" value="{{ recherche }}" placeholder="Nom ou prénom">
+                </label>
+                <label>
+                    Trier par
+                    <select name="tri">
+                        <option value="recentes" {{ tri == 'recentes' ? 'selected' : '' }}>Date la plus récente</option>
+                        <option value="anciennes" {{ tri == 'anciennes' ? 'selected' : '' }}>Date la plus ancienne</option>
+                    </select>
+                </label>
+                <label class="admin-checkbox-filter">
+                    <input type="checkbox" name="afficher_terminees" value="1" {{ afficherTerminees ? 'checked' : '' }}>
+                    Afficher les demandes terminées
+                </label>
+                <button type="submit">Rechercher</button>
+            </form>
+
             {% for message in app.flashes('success') %}
                 <p class="admin-alert admin-alert-success">{{ message }}</p>
             {% endfor %}
@@ -50,6 +69,19 @@
                                     <span class="admin-info-label">CLIENT</span>
                                     <strong>{{ demande.utilisateur ? demande.utilisateur.prenom ~ ' ' ~ demande.utilisateur.nom : 'Client inconnu' }}</strong>
                                     <small>{{ demande.utilisateur ? demande.utilisateur.mail : '' }}</small>
+                                </div>
+                                <div>
+                                    {% set prixTotal = 0 %}
+                                    {% set prixAdaptable = false %}
+                                    {% for prestationPrix in demande.correspondre %}
+                                        {% if prestationPrix.prixSeance is null %}
+                                            {% set prixAdaptable = true %}
+                                        {% else %}
+                                            {% set prixTotal = prixTotal + prestationPrix.prixSeance %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span class="admin-info-label">PRIX</span>
+                                    <p>{{ prixAdaptable ? 'Prix adaptable' : prixTotal|number_format(2, ',', ' ') ~ ' € par séance au total' }}</p>
                                 </div>
                                 <div>
                                     <span class="admin-info-label">DESCRIPTION</span>

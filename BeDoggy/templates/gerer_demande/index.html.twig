@@ -20,6 +20,15 @@
                 <section class="demandes-grid" aria-label="Liste de vos demandes">
                     {% for demande in demandes %}
                         {% set prestation = demande.correspondre|first %}
+                        {% set prixTotal = 0 %}
+                        {% set prixAdaptable = false %}
+                        {% for prestationPrix in demande.correspondre %}
+                            {% if prestationPrix.prixSeance is null %}
+                                {% set prixAdaptable = true %}
+                            {% else %}
+                                {% set prixTotal = prixTotal + prestationPrix.prixSeance %}
+                            {% endif %}
+                        {% endfor %}
                         {% set statut = demande.statut ? demande.statut.libelle|default('')|lower : '' %}
                         {% set statutClasse = statut|replace({' ': '-'}) %}
                         <article class="demande-card">
@@ -52,6 +61,9 @@
                                 <p class="demande-date">
                                     <span aria-hidden="true">◫</span>
                                     {{ demande.date ? demande.date|date('d F Y') : 'Date non renseignée' }}
+                                </p>
+                                <p class="demande-price">
+                                    {{ prixAdaptable ? 'Prix adaptable' : 'Prix total : ' ~ prixTotal|number_format(2, ',', ' ') ~ ' € par séance' }}
                                 </p>
                                 {% if demande.reponse %}
                                     <p class="demande-reponse">

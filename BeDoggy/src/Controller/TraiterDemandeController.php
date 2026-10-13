@@ -55,18 +55,52 @@ final class TraiterDemandeController extends AbstractController
             }
         }
 
-        $demandes = $demandeRepository->createQueryBuilder('demande')
+        $recherche = trim((string) $request->query->get('recherche', ''));
+
+        $queryBuilder = $demandeRepository->createQueryBuilder('demande')
             ->leftJoin('demande.utilisateur', 'utilisateur')
             ->addSelect('utilisateur')
             ->leftJoin('demande.Correspondre', 'prestation')
-            ->addSelect('prestation')
+            ->addSelect('prestation');
+
+        if ($recherche !== '') {
+            $queryBuilder
+                ->andWhere('LOWER(utilisateur.nom) LIKE :recherche OR LOWER(utilisateur.prenom) LIKE :recherche')
+                ->setParameter('recherche', '%' . mb_strtolower($recherche) . '%');
+        }
+
+        $demandes = $queryBuilder
             ->orderBy('demande.date', 'DESC')
             ->getQuery()
             ->getResult();
 
+        $afficherTerminees = $request->query->getBoolean('afficher_terminees');
+        $tri = $request->query->get('tri', 'recentes');
+
+        if (!$afficherTerminees) {
+            $demandes = array_values(array_filter(
+                $demandes,
+                static function (Demande $demande): bool {
+                    $statut = mb_strtolower(trim((string) $demande->getStatut()?->getLibelle()));
+                    $statut = strtr($statut, ['é' => 'e', 'è' => 'e', 'ê' => 'e']);
+
+                    return !in_array($statut, ['termine', 'terminee'], true);
+                }
+            ));
+        }
+
+        usort($demandes, static function (Demande $premiere, Demande $seconde) use ($tri): int {
+            $comparaison = $premiere->getDate() <=> $seconde->getDate();
+
+            return $tri === 'anciennes' ? $comparaison : -$comparaison;
+        });
+
         return $this->render('traiter_demande/index.html.twig', [
             'demandes' => $demandes,
             'statuts' => $statuts,
+            'tri' => $tri,
+            'afficherTerminees' => $afficherTerminees,
+            'recherche' => $recherche,
         ]);
     }
 }

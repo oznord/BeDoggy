@@ -21,22 +21,37 @@
                         <div class="creation-checkbox-group">
                             {% for prestation in prestations %}
                                 <label>
-                                    <input type="checkbox" name="prestation[]" value="{{ prestation.id }}">
+                                    <input type="checkbox" name="prestation[]" value="{{ prestation.id }}" {{ prestation.id in prestationIdsSelectionnes ? 'checked' : '' }}>
                                     {{ prestation.libelle }}
                                 </label>
                             {% endfor %}
                         </div>
+                        <button type="submit" name="action" value="calculer_prix" formnovalidate class="creation-price-button">Voir le prix des prestations</button>
+                        {% if prestationsSelectionnees is not empty %}
+                            <div class="creation-price-result">
+                                <strong>Prestations choisies :</strong>
+                                {% for prestation in prestationsSelectionnees %}
+                                    <span>{{ prestation.libelle }}{% if not loop.last %}, {% endif %}</span>
+                                {% endfor %}
+                                <br>
+                                {% if prixAdaptable %}
+                                    <span>Prix total adaptable.</span>
+                                {% else %}
+                                    <span>Prix total : {{ prixTotal|number_format(2, ',', ' ') }} € par séance.</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </section>
 
                     <section class="creation-section">
                         <h2>2. Description du besoin</h2>
                         <label for="description">Détaillez votre demande <span>*</span></label>
-                        <textarea id="description" name="description" placeholder="Décrivez le comportement de votre chien, vos objectifs, ou toute autre information utile..." required></textarea>
+                        <textarea id="description" name="description" placeholder="Décrivez le comportement de votre chien, vos objectifs, ou toute autre information utile..." required>{{ formulaire.description }}</textarea>
                     </section>
 
                     <section class="creation-section creation-date-section">
                         <label for="date">Date souhaitée <span>*</span></label>
-                        <input id="date" type="date" name="date" min="{{ 'now'|date('Y-m-d') }}" required>
+                        <input id="date" type="date" name="date" value="{{ formulaire.date }}" min="{{ 'now'|date('Y-m-d') }}" required>
                     </section>
                 </div>
 
@@ -44,18 +59,18 @@
                     <section class="creation-section">
                         <h2>3. Informations sur votre chien</h2>
                         <label for="nom">Nom du chien <span>*</span></label>
-                        <input id="nom" type="text" name="nom" placeholder="Rex" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+*$" required>
+                        <input id="nom" type="text" name="nom" value="{{ formulaire.nom }}" placeholder="Rex" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+$" required>
 
                         <label for="race">Race du chien <span>*</span></label>
-                        <input id="race" type="text" name="race" placeholder="Yorkshire" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+*$" required >
+                        <input id="race" type="text" name="race" value="{{ formulaire.race }}" placeholder="Yorkshire" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+$" required >
 
                         <label for="age">Âge (ans) <span>*</span></label>
-                        <input id="age" type="number" name="age" min="0" max="100" placeholder="1" required>
+                        <input id="age" type="number" name="age" value="{{ formulaire.age }}" min="0" max="100" placeholder="1" required>
 
                         <label>Genre <span>*</span></label>
                         <div class="creation-radio-group">
-                            <label><input type="radio" name="genre" value="Mâle" required> Mâle</label>
-                            <label><input type="radio" name="genre" value="Femelle"> Femelle</label>
+                            <label><input type="radio" name="genre" value="Mâle" {{ formulaire.genre == 'Mâle' ? 'checked' : '' }} required> Mâle</label>
+                            <label><input type="radio" name="genre" value="Femelle" {{ formulaire.genre == 'Femelle' ? 'checked' : '' }}> Femelle</label>
                         </div>
                     </section>
                 </div>
