@@ -229,6 +229,7 @@
 
     font-weight: bold;
     color: white;
+    transition: transform 0.4s ease;
 
     display: grid;
     grid-template-columns: repeat(2, 1fr) 9fr 1fr;
@@ -236,7 +237,15 @@
     justify-items: center;
     
     gap: 10px;
-} 
+}
+
+.boutonsAccueil .bouton1:hover {
+    transform: scale(1.03);
+}
+
+.boutonsAccueil .bouton1:active {
+    background: linear-gradient(to right, #6a6a6a, #aeaeae);
+}
 
 
 .boutonsAccueil .bouton1 img {
@@ -256,12 +265,21 @@
 
     font-weight: bold;
     color: white;
+    transition: transform 0.4s ease;
 
     display: grid;
     grid-template-columns: repeat(2, 1fr) 9fr 1fr;
     align-items:center;
 
     gap: 2px;
+}
+
+.boutonsAccueil .bouton2:hover {
+    transform: scale(1.03);
+}
+
+.boutonsAccueil .bouton2:active {
+    background: linear-gradient(to right, #c2c2c2, #aeaeae);
 }
 
 .boutonsAccueil .bouton2 img {
@@ -525,10 +543,20 @@
     padding: 15px;
     border-radius: 20px;
 
+    transition: transform 0.4s ease;
+
     font-weight: bold;
     color: white;
     text-align: center;
     text-decoration: none;
+}
+
+.introPresentationPrestas a:hover {
+    transform: scale(1.03);
+}
+
+.introPresentationPrestas a:active {
+    background: linear-gradient(to right, #6a6a6a, #aeaeae);
 }
 
 @media (max-width: 1050px) {
