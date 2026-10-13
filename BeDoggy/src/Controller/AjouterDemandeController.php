@@ -26,6 +26,18 @@ final class AjouterDemandeController extends AbstractController
         }
 
         $utilisateur = $this->getUser();
+        $prestationsSelectionnees = [];
+        $prixTotal = 0;
+        $prixAdaptable = false;
+        $prestationIdsSelectionnes = [];
+        $formulaire = [
+            'nom' => '',
+            'race' => '',
+            'age' => '',
+            'genre' => '',
+            'description' => '',
+            'date' => '',
+        ];
 
         if ($request->isMethod('POST')) {
             if (!$this->isCsrfTokenValid('ajouter_demande', $request->request->get('_token'))) {
@@ -39,6 +51,15 @@ final class AjouterDemandeController extends AbstractController
                     ),
                     static fn (int|false $id): bool => $id !== false && $id > 0
                 )));
+                $prestationIdsSelectionnes = $prestationIds;
+                $formulaire = [
+                    'nom' => trim((string) $request->request->get('nom')),
+                    'race' => trim((string) $request->request->get('race')),
+                    'age' => (string) $request->request->get('age', ''),
+                    'genre' => trim((string) $request->request->get('genre')),
+                    'description' => trim((string) $request->request->get('description')),
+                    'date' => (string) $request->request->get('date', ''),
+                ];
                 $nom = trim((string) $request->request->get('nom'));
                 $race = trim((string) $request->request->get('race'));
                 $age = filter_var($request->request->get('age'), FILTER_VALIDATE_INT);
@@ -47,12 +68,33 @@ final class AjouterDemandeController extends AbstractController
                 $date = \DateTime::createFromFormat('Y-m-d', (string) $request->request->get('date'));
                 $dateErrors = \DateTime::getLastErrors();
                 $dateIsValid = $date !== false && ($dateErrors === false || $dateErrors['warning_count'] === 0 && $dateErrors['error_count'] === 0);
-                $nomIsValid = preg_match("/^[\\p{L}]+(?:[ '-][\\p{L}]+)*$/u", $nom) === 1;
-                $raceIsValid = preg_match("/^[\\p{L}]+(?:[ '-][\\p{L}]+)*$/u", $race) === 1;
+                $nomIsValid = preg_match("/^\\p{L}+$/u", $nom) === 1;
+                $raceIsValid = preg_match("/^\\p{L}+$/u", $race) === 1;
 
                 $prestations = $prestationIds !== []
                     ? $prestationRepository->findBy(['id' => $prestationIds])
                     : [];
+                $prestationsSelectionnees = $prestations;
+
+                foreach ($prestationsSelectionnees as $prestation) {
+                    if ($prestation->getPrixSeance() === null) {
+                        $prixAdaptable = true;
+                    } else {
+                        $prixTotal += $prestation->getPrixSeance();
+                    }
+                }
+
+                if ($request->request->get('action') === 'calculer_prix') {
+                    return $this->render('ajouter_demande/index.html.twig', [
+                        'prestations' => $prestationRepository->findAll(),
+                        'prestationIdsSelectionnes' => $prestationIdsSelectionnes,
+                        'prestationsSelectionnees' => $prestationsSelectionnees,
+                        'prixTotal' => $prixTotal,
+                        'prixAdaptable' => $prixAdaptable,
+                        'formulaire' => $formulaire,
+                    ]);
+                }
+
                 $statut = $entityManager->getRepository(Statut::class)->findOneBy(['libelle' => 'En attente']);
 
                 if (
@@ -100,6 +142,11 @@ final class AjouterDemandeController extends AbstractController
 
         return $this->render('ajouter_demande/index.html.twig', [
             'prestations' => $prestationRepository->findAll(),
+            'prestationIdsSelectionnes' => $prestationIdsSelectionnes,
+            'prestationsSelectionnees' => $prestationsSelectionnees,
+            'prixTotal' => $prixTotal,
+            'prixAdaptable' => $prixAdaptable,
+            'formulaire' => $formulaire,
         ]);
     }
 }

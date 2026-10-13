@@ -4,6 +4,15 @@
 
 {% block body %}
     {% set prestation = demande.correspondre|first %}
+    {% set prixTotal = 0 %}
+    {% set prixAdaptable = false %}
+    {% for prestationPrix in demande.correspondre %}
+        {% if prestationPrix.prixSeance is null %}
+            {% set prixAdaptable = true %}
+        {% else %}
+            {% set prixTotal = prixTotal + prestationPrix.prixSeance %}
+        {% endif %}
+    {% endfor %}
     {% set statut = demande.statut ? demande.statut.libelle|lower : '' %}
     {% set statutClasse = statut|replace({' ': '-'}) %}
 
@@ -34,6 +43,24 @@
                 <div class="demande-detail-block">
                     <span class="demande-detail-label">DESCRIPTION DE VOTRE DEMANDE</span>
                     <p>{{ demande.description ?: 'Aucune description renseignée.' }}</p>
+                </div>
+                <div class="demande-detail-block">
+                    <span class="demande-detail-label">PRIX DES PRESTATIONS</span>
+                    {% for prestationPrix in demande.correspondre %}
+                        <p>
+                            {{ prestationPrix.libelle }} :
+                            {% if prestationPrix.prixSeance is null %}
+                                Prix adaptable
+                            {% else %}
+                                {{ prestationPrix.prixSeance|number_format(2, ',', ' ') }} € par séance
+                            {% endif %}
+                        </p>
+                    {% endfor %}
+                    <p>
+                        <strong>
+                            {{ prixAdaptable ? 'Total adaptable' : 'Total : ' ~ prixTotal|number_format(2, ',', ' ') ~ ' € par séance' }}
+                        </strong>
+                    </p>
                 </div>
                 <div class="demande-detail-response">
                     <span class="demande-detail-label">RÉPONSE DE L'ADMINISTRATEUR</span>

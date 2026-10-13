@@ -1047,6 +1047,13 @@
     font-size: 10px;
 }
 
+.demande-price {
+    margin: 8px 0 0;
+    color: #167243;
+    font-size: 11px;
+    font-weight: bold;
+}
+
 .demande-date span {
     margin-right: 7px;
     color: #9bb9aa;
@@ -1330,6 +1337,29 @@
     padding: 0;
 }
 
+.creation-price-button {
+    align-self: flex-start;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #ffffff;
+    background: #003d22;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.creation-price-button:hover {
+    background: #075b35;
+}
+
+.creation-price-result {
+    margin: 0;
+    color: #167243;
+    font-size: 13px;
+    font-weight: bold;
+}
+
 .creation-section label span {
     color: #e31e24;
 }
@@ -1586,6 +1616,77 @@
     font-size: 14px;
 }
 
+.admin-filters {
+    display: flex;
+    align-items: end;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid #dcebe1;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.admin-filters label {
+    display: grid;
+    gap: 6px;
+    color: #78a58e;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .8px;
+}
+
+.admin-filters select {
+    min-width: 190px;
+    height: 35px;
+    border: 1px solid #cfe1d5;
+    border-radius: 7px;
+    padding: 0 8px;
+    color: #174d35;
+    background: #f8fcf9;
+}
+
+.admin-filters input[type="search"] {
+    width: 220px;
+    height: 35px;
+    border: 1px solid #cfe1d5;
+    border-radius: 7px;
+    padding: 0 10px;
+    color: #174d35;
+    background: #f8fcf9;
+    font: 12px Arial, sans-serif;
+}
+
+.admin-filters input[type="search"]:focus,
+.admin-filters select:focus {
+    outline: 2px solid rgba(23, 97, 57, .15);
+    border-color: #167243;
+}
+
+.admin-checkbox-filter {
+    display: flex !important;
+    align-items: center;
+    gap: 7px !important;
+    height: 35px;
+    letter-spacing: 0 !important;
+}
+
+.admin-checkbox-filter input {
+    accent-color: #167243;
+}
+
+.admin-filters button {
+    height: 35px;
+    border: 0;
+    border-radius: 7px;
+    padding: 0 15px;
+    color: #ffffff;
+    background: #003d22;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .admin-total {
     min-width: 105px;
     padding: 12px 18px;
@@ -1665,7 +1766,7 @@
 
 .admin-demande-info {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 220px 220px 1fr;
     gap: 35px;
     padding: 17px 0 19px;
 }
@@ -1794,6 +1895,22 @@
     .admin-demandes-header {
         align-items: start;
         gap: 20px;
+    }
+
+    .admin-filters {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .admin-filters input[type="search"],
+    .admin-filters select,
+    .admin-filters button {
+        width: 100%;
+    }
+
+    .admin-checkbox-filter {
+        height: auto;
     }
 
     .admin-demandes-header h1 {
