@@ -127,19 +127,21 @@ client.
 
 ```text
 BeDoggy/
-�"o�"?�"? config/              # Configuration de Symfony et Doctrine
-�"o�"?�"? migrations/          # Migrations de la base de données
-�"o�"?�"? public/               # Point d'entrée et fichiers publics
-�",   �""�"?�"? assets/           # Images et feuilles de style
-�"o�"?�"? src/
-�",   �"o�"?�"? Controller/       # Contrôleurs de l'application
-�",   �"o�"?�"? Entity/           # Entités Doctrine
-�",   �"o�"?�"? Repository/       # Requêtes vers la base de données
-�",   �""�"?�"? Security/         # Authentification
-�"o�"?�"? templates/             # Vues Twig
-�"o�"?�"? tests/                 # Tests éventuels
-�"o�"?�"? compose.yaml           # Service de base de données Docker
-�""�"?�"? composer.json          # Dépendances PHP
+
+config/           # Configuration de Symfony et Doctrine
+
+migrations/       # Migrations de la base de données
+
+public/           # Point d'entrée et fichiers publics
+assets/           # Images et feuilles de style
+
+src/
+Controller/       # Contrôleurs de l'application
+Entity/           # Entités Doctrine
+Repository/       # Requêtes vers la base de données
+Security/         # Authentification
+
+templates/        # Vues Twig
 ```
 
 ## Commandes utiles
