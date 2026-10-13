@@ -17,13 +17,15 @@
                 <div class="creation-column">
                     <section class="creation-section">
                         <h2>1. Choix de la prestation</h2>
-                        <label for="prestation">Sélectionnez une prestation <span>*</span></label>
-                        <select id="prestation" name="prestation" required>
-                            <option value="">Choisir une prestation</option>
+                        <span class="creation-field-label">Sélectionnez une ou plusieurs prestations <span>*</span></span>
+                        <div class="creation-checkbox-group">
                             {% for prestation in prestations %}
-                                <option value="{{ prestation.id }}">{{ prestation.libelle }}</option>
+                                <label>
+                                    <input type="checkbox" name="prestation[]" value="{{ prestation.id }}">
+                                    {{ prestation.libelle }}
+                                </label>
                             {% endfor %}
-                        </select>
+                        </div>
                     </section>
 
                     <section class="creation-section">
@@ -42,10 +44,10 @@
                     <section class="creation-section">
                         <h2>3. Informations sur votre chien</h2>
                         <label for="nom">Nom du chien <span>*</span></label>
-                        <input id="nom" type="text" name="nom" placeholder="Rex" required>
+                        <input id="nom" type="text" name="nom" placeholder="Rex" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+*$" required>
 
                         <label for="race">Race du chien <span>*</span></label>
-                        <input id="race" type="text" name="race" placeholder="Yorkshire" required>
+                        <input id="race" type="text" name="race" placeholder="Yorkshire" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+*$" required >
 
                         <label for="age">Âge (ans) <span>*</span></label>
                         <input id="age" type="number" name="age" min="0" max="100" placeholder="1" required>

@@ -28,12 +28,19 @@
             {% if demandes is not empty %}
                 <section class="admin-demandes-list" aria-label="Demandes des clients">
                     {% for demande in demandes %}
-                        {% set prestation = demande.correspondre|first %}
                         <article class="admin-demande-card">
                             <div class="admin-demande-card-header">
                                 <div>
                                     <span class="admin-reference">REQ-{{ '%03d'|format(demande.id) }}</span>
-                                    <h2>{{ prestation ? prestation.libelle : 'Demande de prestation' }}</h2>
+                                    <h2>
+                                        {% if demande.correspondre is not empty %}
+                                            {% for prestation in demande.correspondre %}
+                                                {{ prestation.libelle }}{% if not loop.last %}, {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            Demande de prestation
+                                        {% endif %}
+                                    </h2>
                                 </div>
                                 <time datetime="{{ demande.date|date('Y-m-d') }}">{{ demande.date|date('d/m/Y') }}</time>
                             </div>
@@ -65,7 +72,7 @@
                                 </div>
                                 <div class="admin-field admin-response-field">
                                     <label for="reponse-{{ demande.id }}">Réponse au client</label>
-                                    <textarea id="reponse-{{ demande.id }}" name="reponse" rows="2" placeholder="Rédigez une réponse visible par le client...">{{ demande.reponse }}</textarea>
+                                    <textarea id="reponse-{{ demande.id }}" name="reponse"   placeholder="Rédigez une réponse visible par le client...">{{ demande.reponse }}</textarea>
                                 </div>
                                 <button class="admin-save-button" type="submit">Enregistrer</button>
                             </form>

@@ -37,7 +37,15 @@
                                     </span>
                                     <span class="demande-reference">REQ-{{ '%03d'|format(demande.id) }}</span>
                                 </div>
-                                <h2>{{ prestation ? prestation.libelle : 'Demande de prestation' }}</h2>
+                                <h2>
+                                    {% if demande.correspondre is not empty %}
+                                        {% for prestation in demande.correspondre %}
+                                            {{ prestation.libelle }}{% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        Demande de prestation
+                                    {% endif %}
+                                </h2>
                                 {% if demande.description %}
                                     <p class="demande-description">{{ demande.description }}</p>
                                 {% endif %}
