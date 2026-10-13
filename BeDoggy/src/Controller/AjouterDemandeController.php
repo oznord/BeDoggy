@@ -31,7 +31,14 @@ final class AjouterDemandeController extends AbstractController
             if (!$this->isCsrfTokenValid('ajouter_demande', $request->request->get('_token'))) {
                 $this->addFlash('error', 'Le formulaire est invalide. Veuillez réessayer.');
             } else {
-                $prestationId = filter_var($request->request->get('prestation'), FILTER_VALIDATE_INT);
+                $prestationIds = $request->request->all('prestation');
+                $prestationIds = array_values(array_unique(array_filter(
+                    array_map(
+                        static fn (mixed $id): int|false => filter_var($id, FILTER_VALIDATE_INT),
+                        $prestationIds
+                    ),
+                    static fn (int|false $id): bool => $id !== false && $id > 0
+                )));
                 $nom = trim((string) $request->request->get('nom'));
                 $race = trim((string) $request->request->get('race'));
                 $age = filter_var($request->request->get('age'), FILTER_VALIDATE_INT);
@@ -40,14 +47,19 @@ final class AjouterDemandeController extends AbstractController
                 $date = \DateTime::createFromFormat('Y-m-d', (string) $request->request->get('date'));
                 $dateErrors = \DateTime::getLastErrors();
                 $dateIsValid = $date !== false && ($dateErrors === false || $dateErrors['warning_count'] === 0 && $dateErrors['error_count'] === 0);
+                $nomIsValid = preg_match("/^[\\p{L}]+(?:[ '-][\\p{L}]+)*$/u", $nom) === 1;
+                $raceIsValid = preg_match("/^[\\p{L}]+(?:[ '-][\\p{L}]+)*$/u", $race) === 1;
 
-                $prestation = $prestationId ? $prestationRepository->find($prestationId) : null;
+                $prestations = $prestationIds !== []
+                    ? $prestationRepository->findBy(['id' => $prestationIds])
+                    : [];
                 $statut = $entityManager->getRepository(Statut::class)->findOneBy(['libelle' => 'En attente']);
 
                 if (
-                    $prestation === null ||
-                    $nom === '' ||
-                    $race === '' ||
+                    count($prestations) !== count($prestationIds) ||
+                    $prestations === [] ||
+                    !$nomIsValid ||
+                    !$raceIsValid ||
                     $age === false ||
                     $age < 0 ||
                     $genre === '' ||
@@ -71,7 +83,9 @@ final class AjouterDemandeController extends AbstractController
                     $demande->setReponse('');
                     $demande->setUtilisateur($utilisateur);
                     $demande->setStatut($statut);
-                    $demande->addCorrespondre($prestation);
+                    foreach ($prestations as $prestation) {
+                        $demande->addCorrespondre($prestation);
+                    }
 
                     $entityManager->persist($chien);
                     $entityManager->persist($demande);

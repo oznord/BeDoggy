@@ -14,7 +14,15 @@
             <header class="demandes-header">
                 <div>
                     <span class="demande-reference">REQ-{{ '%03d'|format(demande.id) }}</span>
-                    <h1>{{ prestation ? prestation.libelle : 'Demande de prestation' }}</h1>
+                    <h1>
+                        {% if demande.correspondre is not empty %}
+                            {% for prestation in demande.correspondre %}
+                                {{ prestation.libelle }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            Demande de prestation
+                        {% endif %}
+                    </h1>
                     <p>Demandée le {{ demande.date ? demande.date|date('d/m/Y') : 'date inconnue' }}</p>
                 </div>
                 <span class="demande-statut statut-{{ statutClasse }}">
