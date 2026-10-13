@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <div class="profil-page">
+        <main class="profil-content">
+            <header class="profil-header">
+                <span class="profil-eyebrow">MON ESPACE</span>
+                <h1>Mon profil</h1>
+                <p>Consultez les informations de votre compte.</p>
+            </header>
+
+            {% for message in app.flashes('error') %}
+                <p class="profil-alert">{{ message }}</p>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <p class="profil-success">{{ message }}</p>
+            {% endfor %}
+
+            <section class="profil-card">
+                <form method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token('modifier_profil') }}">
+                    <input type="hidden" name="action" value="modifier_profil">
+                    <label for="prenom">Prénom</label>
+                    <input id="prenom" type="text" name="prenom" value="{{ utilisateur.prenom }}" required>
+
+                    <label for="nom">Nom</label>
+                    <input id="nom" type="text" name="nom" value="{{ utilisateur.nom }}" required>
+
+                    <label for="mail">Adresse e-mail</label>
+                    <input id="mail" type="email" name="mail" value="{{ utilisateur.mail }}" required>
+
+                    <label for="tel">Téléphone</label>
+                    <input id="tel" type="tel" name="tel" value="{{ utilisateur.tel }}" required>
+
+                    <button class="profil-save-button" type="submit">Enregistrer mes modifications</button>
+                </form>
+            </section>
+
+            <section class="profil-danger-zone">
+                <h2>Supprimer mon compte</h2>
+                <p>Cette action supprimera définitivement votre compte et vos demandes.</p>
+                <form method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer définitivement votre compte ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('supprimer_compte') }}">
+                    <input type="hidden" name="action" value="supprimer_compte">
+                    <button type="submit">Supprimer définitivement mon compte</button>
+                </form>
+            </section>
+        </main>
+    </div>
+{% endblock %}
