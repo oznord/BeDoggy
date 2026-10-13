@@ -44,6 +44,7 @@
                     </div>
                     <div class="nav-right">
                         {% if app.user %}
+                            <a class="nav-auth-button nav-profile-button" href="{{ path('app_profil') }}">Mon profil</a>
                             <a class="nav-auth-button nav-logout-button" href="{{ path('app_logout') }}">Déconnexion</a>
                         {% else %}
                             <a class="nav-auth-button nav-login-button" href="{{ path('app_login') }}">Se connecter</a>
